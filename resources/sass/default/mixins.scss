@@ -1,0 +1,57 @@
+@mixin screen-size( $size, $type: "", $only: true ) {
+    @if( $only ) {
+
+        @if( $size == "mobile" ) {
+            @media( min-width: #{ map-get( $layout, mobile-size-min ) } ) and ( max-width: #{ map-get( $layout, mobile-size-max ) } ) {
+                @content;
+            }
+        }
+        @if( $size == "tablet" ) {
+            @media( min-width: #{ map-get( $layout, tablet-size-min ) } ) and ( max-width: #{ map-get( $layout, tablet-size-max ) } ) {
+                @content;
+            }
+        }
+        @if( $size == "desktop" ) {
+            @media( min-width: #{ map-get( $layout, desktop-size-min ) } ) {
+                @content;
+            }
+        }
+
+    } @else {
+
+        @if( $type == "min" ) {
+
+            @if( $size == "mobile" ) {
+                @media( min-width: #{ map-get( $layout, mobile-size-min ) } ) {
+                    @content;
+                }
+            }
+            @if( $size == "tablet" ) {
+                @media( min-width: #{ map-get( $layout, tablet-size-min ) } ) {
+                    @content;
+                }
+            }
+            @if( $size == "desktop" ) {
+                @media( min-width: #{ map-get( $layout, desktop-size-min ) } ) {
+                    @content;
+                }
+            }
+
+        }
+        @if( $type == "max" ) {
+
+            @if( $size == "mobile" ) {
+                @media( max-width: #{ map-get( $layout, mobile-size-max ) } ) {
+                    @content;
+                }
+            }
+            @if( $size == "tablet" ) {
+                @media( max-width: #{ map-get( $layout, tablet-size-max ) } ) {
+                    @content;
+                }
+            }
+
+        }
+
+    }
+}

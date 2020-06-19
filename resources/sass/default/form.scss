@@ -1,0 +1,73 @@
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=url],
+select,
+textarea {
+    margin-bottom: 25px;
+    padding: 20px;
+    min-width: 650px;
+    line-height: 20px;
+    color: var( --color-text--default );
+    font-weight: var( --font-weight--default );
+    font-size: var( --font-size--text );
+    font-family: var( --font-family--default );
+    background-color: var( --form-background--default );
+    border: 1px solid var( --form-border--color-default );
+    border-radius: var( --form-border--radius );
+    box-shadow: none;
+    box-sizing: border-box;
+    outline: none;
+}
+
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=url],
+textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+textarea {
+    min-height: 102px;
+}
+
+input[type=email]:focus,
+input[type=number]:focus,
+input[type=password]:focus,
+input[type=search]:focus,
+input[type=tel]:focus,
+input[type=text]:focus,
+input[type=url]:focus,
+select:focus,
+textarea:focus {
+    border: 1px solid var( --form-border--color-focus );
+}
+
+label,
+legend {
+    display: block;
+    margin-bottom: var( --form-label--margin-bottom );
+    font-size: var( --form-label--font-size );
+    font-weight: var( --form-label--font-weight );
+    color: var( --form-label--color-default );
+    text-transform: uppercase;
+}
+
+fieldset {
+    padding: 0;
+    border-width: 0;
+}
+
+input[type=checkbox],
+input[type=radio] {
+    display: inline;
+}

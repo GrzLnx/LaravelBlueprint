@@ -1,0 +1,445 @@
+/** SCSS variables **/
+
+/* Variables for the website layout */
+$layout: (
+    website-width:                      100%,
+    desktop-size-min:                   1024px,
+    tablet-size-max:                   1023px,
+    tablet-size-min:                    768px,
+    mobile-size-max:                    767px,
+    mobile-size-min:                    320px
+);
+
+/* Variables for the colors */
+$color-accent: (
+    first:                              #1E212B,
+    second:                             #4D8B31,
+    third:                              #FFC800,
+    fourth:                             #FF8427,
+    fifth:                              #FFFFFF,
+    black:                              #1E212B,
+    green:                              #4D8B31,
+    yellow:                             #FFC800,
+    orange:                             #FF8427,
+    white:                              #FFFFFF,
+);
+
+$color-white: (
+    default:                            #FFFFFF,
+    first-shade:                        #F3F2F1,
+    second-shade:                       #F6F6F6,
+    third-shade:                        #E4E5E5,
+    fourth-shade:                       #EAEAEA
+);
+
+$color-black: (
+    default:                            #000000,
+    first-shade:                        #111111,
+    second-shade:                       #242323,
+    third-shade:                        #333333
+);
+
+$color-grey: (
+    first-shade:                        #969797,
+    second-shade:                       #484747,
+    third-shade:                        #D3D3D3,
+    fourth-shade:                       #C0C0C0,
+    fifth-shade:                        #A9A9A9
+);
+
+$color-title: (
+    default:                            map-get( $color-accent, first ),
+    first:                              map-get( $color-accent, first ),
+    second:                             map-get( $color-accent, second ),
+    third:                              map-get( $color-accent, third )
+);
+$color-dark-title: (
+    default:                            map-get( $color-accent, orange ),
+    first:                              map-get( $color-accent, orange ),
+    second:                             map-get( $color-accent, yellow ),
+    third:                              map-get( $color-accent, white )
+);
+
+$color-text: (
+    default:                            map-get( $color-black, third-shade ),
+    first:                              map-get( $color-black, first-shade ),
+    second:                             map-get( $color-black, second-shade ),
+    third:                              map-get( $color-black, third-shade ),
+    white:                              map-get( $color-white, default ),
+    black:                              map-get( $color-black, default )
+);
+$color-dark-text: (
+    default:                            map-get( $color-white, default ),
+    first:                              map-get( $color-white, first-shade ),
+    second:                             map-get( $color-white, second-shade ),
+    third:                              map-get( $color-white, third-shade ),
+    white:                              map-get( $color-white, default ),
+    black:                              map-get( $color-black, default )
+);
+
+$color-link: (
+    default:                            map-get( $color-accent, first ),
+    visited:                            map-get( $color-accent, first ),
+    hover:                              map-get( $color-accent, second ),
+    active:                             map-get( $color-accent, second ),
+    focus:                              map-get( $color-accent, second )
+);
+$color-dark-link: (
+    default:                            map-get( $color-accent, yellow ),
+    visited:                            map-get( $color-accent, yellow ),
+    hover:                              map-get( $color-accent, green ),
+    focus:                              map-get( $color-accent, green ),
+    active:                             map-get( $color-accent, green )
+);
+
+$color-button: (
+    first:                              map-get( $color-accent, yellow ),
+    second:                             map-get( $color-accent, green )
+);
+$color-dark-button: (
+    first:                              map-get( $color-accent, yellow ),
+    second:                             map-get( $color-accent, green )
+);
+$color-button-text: (
+    first:                              map-get( $color-black, first-shade ),
+    second:                             map-get( $color-black, first-shade )
+);
+$color-dark-button-text: (
+    first:                              map-get( $color-black, first-shade ),
+    second:                             map-get( $color-black, first-shade )
+);
+
+$color-border: (
+    first:                              map-get( $color-white, third-shade ),
+    second:                             map-get( $color-black, third-shade ),
+    third:                              map-get( $color-grey, third-shade ),
+    white:                              map-get( $color-white, default ),
+    black:                              map-get( $color-black, default )
+);
+$color-dark-border: (
+    first:                              map-get( $color-black, third-shade ),
+    second:                             map-get( $color-white, third-shade ),
+    third:                              map-get( $color-grey, third-shade ),
+    white:                              map-get( $color-white, default ),
+    black:                              map-get( $color-black, default )
+);
+
+$color-background: (
+    default:                            map-get( $color-white, default ),
+    light:                              map-get( $color-white, second-shade ),
+    dark:                               map-get( $color-black, first-shade ),
+    first-accent:                       map-get( $color-accent, first ),
+    second-accent:                      map-get( $color-accent, second ),
+    third-accent:                       map-get( $color-accent, third ),
+    fourth-accent:                      map-get( $color-accent, fourth ),
+    fifth-accent:                       map-get( $color-accent, fifth )
+);
+
+$color-status: (
+    success:                            #8CF258,
+    neutral:                            orange,
+    error:                              #CE0018
+);
+
+$color-icon: (
+    success:                            map-get( $color-status, success ),
+    neutral:                            map-get( $color-status, neutral ),
+    error:                              map-get( $color-status, error )
+);
+
+/* Variables for the spaces */
+$space-layout: (
+    default:                            25px,
+    small:                              10px,
+    large:                              40px,
+    section:                            25px,
+    object:                             25px
+);
+
+$space-title: (
+    h1:                                 25px,
+    h2:                                 25px,
+    h3:                                 25px,
+    h4:                                 10px,
+    h5:                                 10px,
+    h6:                                 10px
+);
+$space-text: (
+    p:                                  10px
+);
+
+/* Variables for the forms */
+$form-border: (
+    color-default:                      var( --color-border--first ),
+    color-hover:                        var( --color-accent--first ),
+    color-active:                       var( --color-accent--first ),
+    color-focus:                        var( --color-accent--first ),
+    color-disabled:                     var( --color-border--first ),
+    color-success:                      map-get( $color-status, success ),
+    color-error:                        map-get( $color-status, error ),
+    size:                               1px,
+    radius:                             0
+);
+$form-dark-border: (
+    color-default:                      var( --color-border--first ),
+    color-hover:                        var( --color-accent--third ),
+    color-active:                       var( --color-accent--third ),
+    color-focus:                        var( --color-accent--third ),
+    color-disabled:                     var( --color-border--first )
+);
+
+$form-label: (
+    color-default:                      var( --color-text--default ),
+    color-success:                      map-get( $color-status, success ),
+    color-error:                        map-get( $color-status, error ),
+    font-size:                          1.7rem,
+    font-weight:                        var( --font-weight--default ),
+    margin-bottom:                      10px
+);
+
+$form-outline: (
+    color-default:                      rgba( map-get( $color-accent, first ), .15 ),
+    size:                               2px
+);
+
+$form-background: (
+    default:                            transparent
+);
+
+/* Variables for the fonts */
+$font-family: (
+    title:                              'nimbus-sans',
+    text:                               'nimbus-sans',
+    default:                            'nimbus-sans',
+    back-up:                            'sans-serif'
+);
+
+$font-size: (
+    default:                            10px,
+    text:                               1.9rem,
+    p:                                  1.9rem,
+    h1:                                 4.8rem,
+    h2:                                 3.6rem,
+    h3:                                 3rem,
+    h4:                                 2.4rem,
+    h5:                                 2rem,
+    h6:                                 1.9rem,
+);
+
+$font-line-height: (
+    default:                            1.4,
+    text:                               1.4,
+    p:                                  1.4,
+    h1:                                 1.4,
+    h2:                                 1.4,
+    h3:                                 1.4,
+    h4:                                 1.4,
+    h5:                                 1.4,
+    h6:                                 1.4
+);
+
+$font-weight: (
+    default:                            400,
+    light:                              300,
+    regular:                            400,
+    medium:                             500,
+    bold:                               700,
+    bolder:                             900
+);
+
+
+
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+
+
+/** CSS variables **/
+
+/* Variables for the website layout */
+html[data-layout] {
+    --layout--website-width:            #{ map-get( $layout, website-width ) };
+}
+
+/* Variables for the colors */
+html[data-theme="dark"] {
+    --color-accent--first:              #{ map-get( $color-accent, first ) };
+    --color-accent--second:             #{ map-get( $color-accent, second ) };
+    --color-accent--third:              #{ map-get( $color-accent, third ) };
+    --color-accent--fourth:             #{ map-get( $color-accent, fourth ) };
+    --color-accent--fifth:              #{ map-get( $color-accent, fifth ) };
+
+    --color-text--default:              #{ map-get( $color-dark-text, default ) };
+    --color-text--first:                #{ map-get( $color-dark-text, first ) };
+    --color-text--second:               #{ map-get( $color-dark-text, second ) };
+    --color-text--third:                #{ map-get( $color-dark-text, third ) };
+    --color-text--white:                #{ map-get( $color-dark-text, white ) };
+    --color-text--black:                #{ map-get( $color-dark-text, black ) };
+
+    --color-title--default:             #{ map-get( $color-dark-title, default ) };
+    --color-title--first:               #{ map-get( $color-dark-title, first ) };
+    --color-title--second:              #{ map-get( $color-dark-title, second ) };
+    --color-title--third:               #{ map-get( $color-dark-title, third ) };
+
+    --color-link--default:              #{ map-get( $color-dark-link, default ) };
+    --color-link--visited:              #{ map-get( $color-dark-link, visited ) };
+    --color-link--hover:                #{ map-get( $color-dark-link, hover ) };
+    --color-link--focus:                #{ map-get( $color-dark-link, focus ) };
+    --color-link--active:               #{ map-get( $color-dark-link, active ) };
+
+    --color-border--first:              #{ map-get( $color-dark-border, first ) };
+    --color-border--second:             #{ map-get( $color-dark-border, second ) };
+    --color-border--third:              #{ map-get( $color-dark-border, third ) };
+    --color-border--white:              #{ map-get( $color-dark-border, white ) };
+    --color-border--black:              #{ map-get( $color-dark-border, black ) };
+
+    --color-background--default:        #{ map-get( $color-background, dark ) };
+    --color-background--light:          #{ map-get( $color-background, light ) };
+    --color-background--dark:           #{ map-get( $color-background, dark ) };
+    --color-background--first-accent:   #{ map-get( $color-background, first-accent ) };
+    --color-background--second-accent:  #{ map-get( $color-background, second-accent ) };
+    --color-background--third-accent:   #{ map-get( $color-background, third-accent ) };
+    --color-background--fourth-accent:  #{ map-get( $color-background, fourth-accent ) };
+    --color-background--fifth-accent:   #{ map-get( $color-background, fifth-accent ) };
+}
+html[data-theme="light"] {
+    --color-accent--first:              #{ map-get( $color-accent, first ) };
+    --color-accent--second:             #{ map-get( $color-accent, second ) };
+    --color-accent--third:              #{ map-get( $color-accent, third ) };
+    --color-accent--fourth:             #{ map-get( $color-accent, fourth ) };
+    --color-accent--fifth:              #{ map-get( $color-accent, fifth ) };
+
+    --color-text--default:              #{ map-get( $color-text, default ) };
+    --color-text--first:                #{ map-get( $color-text, first ) };
+    --color-text--second:               #{ map-get( $color-text, second ) };
+    --color-text--third:                #{ map-get( $color-text, third ) };
+    --color-text--white:                #{ map-get( $color-text, white ) };
+    --color-text--black:                #{ map-get( $color-text, black ) };
+
+    --color-title--default:             #{ map-get( $color-title, default ) };
+    --color-title--first:               #{ map-get( $color-title, first ) };
+    --color-title--second:              #{ map-get( $color-title, second ) };
+    --color-title--third:               #{ map-get( $color-title, third ) };
+
+    --color-link--default:              #{ map-get( $color-link, default ) };
+    --color-link--visited:              #{ map-get( $color-link, visited ) };
+    --color-link--hover:                #{ map-get( $color-link, hover ) };
+    --color-link--focus:                #{ map-get( $color-link, focus ) };
+    --color-link--active:               #{ map-get( $color-link, active ) };
+
+    --color-border--first:              #{ map-get( $color-border, first ) };
+    --color-border--second:             #{ map-get( $color-border, second ) };
+    --color-border--third:              #{ map-get( $color-border, third ) };
+    --color-border--white:              #{ map-get( $color-border, white ) };
+    --color-border--black:              #{ map-get( $color-border, black ) };
+
+    --color-background--default:        #{ map-get( $color-background, default ) };
+    --color-background--light:          #{ map-get( $color-background, light ) };
+    --color-background--dark:           #{ map-get( $color-background, dark ) };
+    --color-background--first-accent:   #{ map-get( $color-background, first-accent ) };
+    --color-background--second-accent:  #{ map-get( $color-background, second-accent ) };
+    --color-background--third-accent:   #{ map-get( $color-background, third-accent ) };
+    --color-background--fourth-accent:  #{ map-get( $color-background, fourth-accent ) };
+    --color-background--fifth-accent:   #{ map-get( $color-background, fifth-accent ) };
+}
+
+html[data-theme] {
+    --color--white:                     #{ map-get( $color-white, default ) };
+    --color--black:                     #{ map-get( $color-black, default ) };
+    --color-icon--success:              #{ map-get( $color-icon, success ) };
+    --color-icon--neutral:              #{ map-get( $color-icon, neutral ) };
+    --color-icon--error:                #{ map-get( $color-icon, error ) };
+}
+
+/* Variables for the spaces */
+html[data-spaces] {
+    --space-layout--default:            #{ map-get( $space-layout, default ) };
+    --space-layout--small:              #{ map-get( $space-layout, small ) };
+    --space-layout--large:              #{ map-get( $space-layout, large ) };
+    --space-layout--section:            #{ map-get( $space-layout, section ) };
+    --space-layout--object:             #{ map-get( $space-layout, object ) };
+
+    --space-title--h1:                  #{ map-get( $space-title, h1 ) };
+    --space-title--h2:                  #{ map-get( $space-title, h2 ) };
+    --space-title--h3:                  #{ map-get( $space-title, h3 ) };
+    --space-title--h4:                  #{ map-get( $space-title, h4 ) };
+    --space-title--h5:                  #{ map-get( $space-title, h5 ) };
+    --space-title--h6:                  #{ map-get( $space-title, h6 ) };
+
+    --space-text--p:                    #{ map-get( $space-text, p ) };
+}
+
+/* Variables for the forms */
+html[data-form][data-theme="light"] {
+    --form-border--color-default:       #{ map-get( $form-border, color-default ) };
+    --form-border--color-hover:         #{ map-get( $form-border, color-hover ) };
+    --form-border--color-active:        #{ map-get( $form-border, color-active ) };
+    --form-border--color-focus:         #{ map-get( $form-border, color-focus ) };
+    --form-border--color-success:       #{ map-get( $form-border, color-success ) };
+}
+html[data-form][data-theme="dark"] {
+    --form-border--color-default:       #{ map-get( $form-dark-border, color-default ) };
+    --form-border--color-hover:         #{ map-get( $form-dark-border, color-hover ) };
+    --form-border--color-active:        #{ map-get( $form-dark-border, color-active ) };
+    --form-border--color-focus:         #{ map-get( $form-dark-border, color-focus ) };
+    --form-border--color-success:       #{ map-get( $form-dark-border, color-success ) };
+}
+html[data-form] {
+    --form-border--error:               #{ map-get( $form-border, color-error ) };
+    --form-border--size:                #{ map-get( $form-border, size ) };
+    --form-border--radius:              #{ map-get( $form-border, radius ) };
+
+    --form-label--color-default:        #{ map-get( $form-label, color-default ) };
+    --form-label--color-success:        #{ map-get( $form-label, color-default ) };
+    --form-label--color-error:          #{ map-get( $form-label, color-default ) };
+    --form-label--font-size:            #{ map-get( $form-label, font-size ) };
+    --form-label--font-weight:          #{ map-get( $form-label, font-weight ) };
+    --form-label--margin-bottom:        #{ map-get( $form-label, margin-bottom ) };
+
+    --form-outline--color-default:      #{ map-get( $form-outline, color-default ) };
+    --form-outline--size:               #{ map-get( $form-outline, size ) };
+
+    --form-background--default:         #{ map-get( $form-background, default ) };
+}
+
+/* Variables for the font */
+html[data-font] {
+    --font-family--title:               '#{ map-get( $font-family, title ) }', #{ map-get( $font-family, back-up ) };
+    --font-family--text:                '#{ map-get( $font-family, text ) }', #{ map-get( $font-family, back-up ) };
+    --font-family--default:             '#{ map-get( $font-family, default ) }', #{ map-get( $font-family, back-up ) };
+
+    --font-size--default:               #{ map-get( $font-size, default ) };
+    --font-size--text:                  #{ map-get( $font-size, text ) };
+    --font-size--p:                     #{ map-get( $font-size, p ) };
+    --font-size--h1:                    #{ map-get( $font-size, h1 ) };
+    --font-size--h2:                    #{ map-get( $font-size, h2 ) };
+    --font-size--h3:                    #{ map-get( $font-size, h3 ) };
+    --font-size--h4:                    #{ map-get( $font-size, h4 ) };
+    --font-size--h5:                    #{ map-get( $font-size, h5 ) };
+    --font-size--h6:                    #{ map-get( $font-size, h6 ) };
+
+    --font-line-height--default:        #{ map-get( $font-line-height, default ) };
+    --font-line-height--text:           #{ map-get( $font-line-height, text ) };
+    --font-line-height--p:              #{ map-get( $font-line-height, p ) };
+    --font-line-height--h1:             #{ map-get( $font-line-height, h1 ) };
+    --font-line-height--h2:             #{ map-get( $font-line-height, h2 ) };
+    --font-line-height--h3:             #{ map-get( $font-line-height, h3 ) };
+    --font-line-height--h4:             #{ map-get( $font-line-height, h4 ) };
+    --font-line-height--h5:             #{ map-get( $font-line-height, h5 ) };
+    --font-line-height--h6:             #{ map-get( $font-line-height, h6 ) };
+
+    --font-weight--default:             #{ map-get( $font-weight, default ) };
+    --font-weight--light:               #{ map-get( $font-weight, light ) };
+    --font-weight--regular:             #{ map-get( $font-weight, regular ) };
+    --font-weight--bold:                #{ map-get( $font-weight, bold ) };
+}
+
+/*
+TODO:: forms = bezig
+TODO:: form class maken = bezig
+TODO:: objects etc
+TODO:: website layout -> grid etc = bezig
+TODO:: buttons
+TODO:: background colors
+TODO:: standaard paginas netjes instellen
+TODO:: tekstblok maken / instellen / stylen
+*/

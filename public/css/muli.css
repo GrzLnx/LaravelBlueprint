@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'Muli';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('./muli-300.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Muli';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('./muli-400.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Muli';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('./muli-600.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Muli';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url('./muli-800.woff2') format('woff2');
+}
