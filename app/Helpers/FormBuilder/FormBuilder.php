@@ -2,6 +2,9 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\ViewErrorBag;
+
 class FormBuilder
 {
     /** Class structure:
@@ -17,6 +20,8 @@ class FormBuilder
 
     /* Class form settings */
     private $formDebug = false;
+    private $formFieldIDAddPrefix = false;
+    private $formUseJavaScriptCheck = true;
     private $formString = "";
     private $formElement = "";
     private $formHTML = "";
@@ -34,6 +39,7 @@ class FormBuilder
     private $formTextInputFieldClass;
     private $formNumberInputFieldClass;
     private $formEmailInputFieldClass;
+    private $formPasswordInputFieldClass;
     private $formCheckboxInputFieldClass;
     private $formRadioInputFieldClass;
     private $formSearchInputFieldClass;
@@ -62,6 +68,9 @@ class FormBuilder
     public function setFormDebug( $formDebug ) {
         $this -> formDebug = $formDebug;
     }
+    public function setFormFieldIDAddPrefix( $formFieldIDAddPrefix ) {
+        $this -> formFieldIDAddPrefix = $formFieldIDAddPrefix;
+    }
     public function setFormAction( $formAction ) {
         $this -> formAction = $formAction;
     }
@@ -86,8 +95,9 @@ class FormBuilder
 
     public function addHiddenInputField( $fieldID, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $javaScriptChecks ) {
         $fieldHTML  = "<div class='form-standard__field form-standard__field--hidden' data-field-status=''>";
+        $fieldNewID = $this -> getFieldID( $fieldID );
         $fieldClass = $this -> getFieldClasses( $this -> formHiddenInputFieldClass, $fieldAdditionalClass );
-        $fieldHTML .= "<input type='hidden' id='" . $fieldID . "' class='" . $fieldClass . "' name='" . $fieldName . "' value='" . $fieldValue . "'";
+        $fieldHTML .= "<input type='hidden' id='" . $fieldNewID . "' class='" . $fieldClass . "' name='" . $fieldName . "' value='" . $fieldValue . "'";
         $fieldHTML .= $this -> addFieldHTMLAttributes( $fieldHTMLAttributes );
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= "/>";
@@ -96,12 +106,18 @@ class FormBuilder
         $this -> formHiddenFieldsHTML .= $fieldHTML;
     }
 
-    public function addTextInputField( $fieldID, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $fieldPlaceholder, $fieldAutocomplete, $useLabel, $labelText, $javaScriptChecks ) {
-        $fieldHTML  = "<div class='form-standard__field form-standard__field--text' data-field-status=''>";
-        $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldID );
+    public function addTextInputField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $fieldPlaceholder, $fieldAutocomplete, $useLabel, $labelText, $javaScriptChecks ) {
+        $fieldHTML  = "";
+        if( empty( $fieldHolderClass ) ) {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--text' data-field-status=''>";
+        } else {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--text {$fieldHolderClass}' data-field-status=''>";
+        }
+        $fieldNewID = $this -> getFieldID( $fieldID );
+        $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
         $fieldClass = $this -> getFieldClasses( $this -> formTextInputFieldClass, $fieldAdditionalClass );
         $fieldValue = $this -> checkFieldValue( $fieldValue, $fieldName );
-        $fieldHTML .= "<input type='text' id='" . $fieldID . "' class='" . $fieldClass . "' name='" . $fieldName . "' placeholder='{$fieldPlaceholder}' autocomplete='{$fieldAutocomplete}' value='" . $fieldValue . "'";
+        $fieldHTML .= "<input type='text' id='" . $fieldNewID . "' class='" . $fieldClass . "' name='" . $fieldName . "' placeholder='{$fieldPlaceholder}' autocomplete='{$fieldAutocomplete}' value='" . $fieldValue . "'";
         $fieldHTML .= $this -> addFieldHTMLAttributes( $fieldHTMLAttributes );
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= "/>";
@@ -110,12 +126,41 @@ class FormBuilder
 
         $this -> formHTML .= $fieldHTML;
     }
-    public function addEmailInputField( $fieldID, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $fieldPlaceholder, $fieldAutocomplete, $useLabel, $labelText, $javaScriptChecks ) {
-        $fieldHTML  = "<div class='form-standard__field form-standard__field--email' data-field-status=''>";
-        $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldID );
+    public function addEmailInputField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $fieldPlaceholder, $fieldAutocomplete, $useLabel, $labelText, $javaScriptChecks ) {
+        $fieldHTML  = "";
+        $fieldHasError = $this -> checkError( $fieldName );
+        if( empty( $fieldHolderClass ) ) {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--email' data-field-status='{$fieldHasError}'>";
+        } else {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--email {$fieldHolderClass}' data-field-status='{$fieldHasError}'>";
+        }
+        $fieldNewID = $this -> getFieldID( $fieldID );
+        $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
         $fieldClass = $this -> getFieldClasses( $this -> formEmailInputFieldClass, $fieldAdditionalClass );
         $fieldValue = $this -> checkFieldValue( $fieldValue, $fieldName );
-        $fieldHTML .= "<input type='email' id='" . $fieldID . "' class='" . $fieldClass . "' name='" . $fieldName . "' placeholder='{$fieldPlaceholder}' autocomplete='{$fieldAutocomplete}' value='" . $fieldValue . "'";
+        $fieldHTML .= "<input type='email' id='" . $fieldNewID . "' class='" . $fieldClass . "' name='" . $fieldName . "' placeholder='{$fieldPlaceholder}' autocomplete='{$fieldAutocomplete}' value='" . $fieldValue . "'";
+        $fieldHTML .= $this -> addFieldHTMLAttributes( $fieldHTMLAttributes );
+        $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
+        $fieldHTML .= "/>";
+        $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
+        $fieldHTML .= $fieldErrorMessage;
+        $fieldHTML .= $this -> getFieldStatusHTML();
+        $fieldHTML .= "</div>";
+
+        $this -> formHTML .= $fieldHTML;
+    }
+    public function addPasswordInputField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $fieldPlaceholder, $fieldAutocomplete, $useLabel, $labelText, $javaScriptChecks ) {
+        $fieldHTML  = "";
+        if( empty( $fieldHolderClass ) ) {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--password' data-field-status=''>";
+        } else {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--password {$fieldHolderClass}' data-field-status=''>";
+        }
+        $fieldNewID = $this -> getFieldID( $fieldID );
+        $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
+        $fieldClass = $this -> getFieldClasses( $this -> formPasswordInputFieldClass, $fieldAdditionalClass );
+        $fieldValue = $this -> checkFieldValue( $fieldValue, $fieldName );
+        $fieldHTML .= "<input type='password' id='" . $fieldNewID . "' class='" . $fieldClass . "' name='" . $fieldName . "' placeholder='{$fieldPlaceholder}' autocomplete='{$fieldAutocomplete}' value='" . $fieldValue . "'";
         $fieldHTML .= $this -> addFieldHTMLAttributes( $fieldHTMLAttributes );
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= "/>";
@@ -124,10 +169,16 @@ class FormBuilder
 
         $this -> formHTML .= $fieldHTML;
     }
-    public function addSubmitInputField( $buttonID, $buttonAdditionalClass, $buttonName, $buttonHTMLAttributes, $buttonValue ) {
-        $fieldHTML  = "<div class='form-standard__field form-standard__field--submit' data-field-status=''>";
+    public function addSubmitInputField( $buttonID, $buttonHolderClass, $buttonAdditionalClass, $buttonName, $buttonHTMLAttributes, $buttonValue ) {
+        $fieldHTML  = "";
+        if( empty( $buttonHolderClass ) ) {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--submit' data-field-status=''>";
+        } else {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--submit {$buttonHolderClass}' data-field-status=''>";
+        }
+        $fieldNewID = $this -> getFieldID( $buttonID );
         $fieldClass = $this -> getFieldClasses( $this -> formSubmitInputFieldClass, $buttonAdditionalClass );
-        $fieldHTML .= "<input type='submit' id='" . $buttonID . "' class='" . $fieldClass . "' name='" . $buttonName . "' value='" . $buttonValue . "'";
+        $fieldHTML .= "<input type='submit' id='" . $fieldNewID . "' class='" . $fieldClass . "' name='" . $buttonName . "' value='" . $buttonValue . "'";
         $fieldHTML .= $this -> addFieldHTMLAttributes( $buttonHTMLAttributes );
         $fieldHTML .= "/>";
         $fieldHTML .= "</div>";
@@ -135,12 +186,59 @@ class FormBuilder
         $this -> formHTML .= $fieldHTML;
     }
 
-    public function addTextareaField( $fieldID, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $fieldPlaceholder, $fieldAutocomplete, $useLabel, $labelText, $javaScriptChecks ) {
-        $fieldHTML  = "<div class='form-standard__field form-standard__field--textarea' data-field-status=''>";
-        $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldID );
+    public function addRadioInputField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $useLabel, $labelText, $javaScriptChecks ) {
+        $fieldHTML  = "";
+        if( empty( $fieldHolderClass ) ) {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--radio' data-field-status=''>";
+        } else {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--radio {$fieldHolderClass}' data-field-status=''>";
+        }
+        $fieldNewID = $this -> getFieldID( $fieldID );
+        $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
+        $fieldClass = $this -> getFieldClasses( $this -> formRadioInputFieldClass, $fieldAdditionalClass );
+        $fieldCheck = $this -> checkRadioValue( $fieldValue, $fieldName );
+        $fieldHTML .= "<input type='radio' id='" . $fieldNewID . "' class='" . $fieldClass . "' name='" . $fieldName . "' value='" . $fieldValue . "{$fieldCheck}'";
+        $fieldHTML .= $this -> addFieldHTMLAttributes( $fieldHTMLAttributes );
+        $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
+        $fieldHTML .= "/>";
+        $fieldHTML .= $this -> getFieldStatusHTML();
+        $fieldHTML .= "</div>";
+
+        $this -> formHTML .= $fieldHTML;
+    }
+    public function addCheckboxInputField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $useLabel, $labelText, $javaScriptChecks ) {
+        $fieldHTML  = "";
+        if( empty( $fieldHolderClass ) ) {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--checkbox' data-field-status=''>";
+        } else {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--checkbox {$fieldHolderClass}' data-field-status=''>";
+        }
+        $fieldNewID = $this -> getFieldID( $fieldID );
+        $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
+        $fieldClass = $this -> getFieldClasses( $this -> formCheckboxInputFieldClass, $fieldAdditionalClass );
+        $fieldCheck = $this -> checkCheckboxValue( $fieldValue, $fieldName );
+        $fieldHTML .= "<input type='checkbox' id='" . $fieldNewID . "' class='" . $fieldClass . "' name='" . $fieldName . "' value='" . $fieldValue . "{$fieldCheck}'";
+        $fieldHTML .= $this -> addFieldHTMLAttributes( $fieldHTMLAttributes );
+        $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
+        $fieldHTML .= "/>";
+        $fieldHTML .= $this -> getFieldStatusHTML();
+        $fieldHTML .= "</div>";
+
+        $this -> formHTML .= $fieldHTML;
+    }
+
+    public function addTextareaField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $fieldPlaceholder, $fieldAutocomplete, $useLabel, $labelText, $javaScriptChecks ) {
+        $fieldHTML  = "";
+        if( empty( $fieldHolderClass ) ) {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--textarea' data-field-status=''>";
+        } else {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--textarea {$fieldHolderClass}' data-field-status=''>";
+        }
+        $fieldNewID = $this -> getFieldID( $fieldID );
+        $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
         $fieldClass = $this -> getFieldClasses( $this -> formTextareaFieldClass, $fieldAdditionalClass );
         $fieldValue = $this -> checkFieldValue( $fieldValue, $fieldName );
-        $fieldHTML .= "<textarea id='" . $fieldID . "' class='" . $fieldClass . "' name='" . $fieldName . "' placeholder='{$fieldPlaceholder}' autocomplete='{$fieldAutocomplete}'";
+        $fieldHTML .= "<textarea id='" . $fieldNewID . "' class='" . $fieldClass . "' name='" . $fieldName . "' placeholder='{$fieldPlaceholder}' autocomplete='{$fieldAutocomplete}'";
         $fieldHTML .= $this -> addFieldHTMLAttributes( $fieldHTMLAttributes );
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= ">{$fieldValue}</textarea>";
@@ -150,11 +248,17 @@ class FormBuilder
         $this -> formHTML .= $fieldHTML;
     }
 
-    public function addSelectField( $fieldID, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $fieldAutocomplete, $optionsArray, $useLabel, $labelText, $javaScriptChecks ) {
-        $fieldHTML  = "<div class='form-standard__field form-standard__field--select' data-field-status=''>";
-        $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldID );
+    public function addSelectField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $fieldAutocomplete, $optionsArray, $useLabel, $labelText, $javaScriptChecks ) {
+        $fieldHTML  = "";
+        if( empty( $fieldHolderClass ) ) {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--select' data-field-status=''>";
+        } else {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--select {$fieldHolderClass}' data-field-status=''>";
+        }
+        $fieldNewID = $this -> getFieldID( $fieldID );
+        $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
         $fieldClass = $this -> getFieldClasses( $this -> formSelectFieldClass, $fieldAdditionalClass );
-        $fieldHTML .= "<select id='" . $fieldID . "' class='" . $fieldClass . "' name='" . $fieldName . "' autocomplete='{$fieldAutocomplete}'";
+        $fieldHTML .= "<select id='" . $fieldNewID . "' class='" . $fieldClass . "' name='" . $fieldName . "' autocomplete='{$fieldAutocomplete}'";
         $fieldHTML .= $this -> addFieldHTMLAttributes( $fieldHTMLAttributes );
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= " />";
@@ -171,10 +275,16 @@ class FormBuilder
         $this -> formHTML .= $fieldHTML;
     }
 
-    public function addSubmitButton( $buttonID, $buttonAdditionalClass, $buttonName, $buttonHTMLAttributes, $buttonValue ) {
-        $fieldHTML  = "<div class='form-standard__field form-standard__field--button' data-field-status=''>";
+    public function addSubmitButton( $buttonID, $buttonHolderClass, $buttonAdditionalClass, $buttonName, $buttonHTMLAttributes, $buttonValue ) {
+        $fieldHTML  = "";
+        if( empty( $buttonHolderClass ) ) {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--button' data-field-status=''>";
+        } else {
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--button {$buttonHolderClass}' data-field-status=''>";
+        }
+        $fieldNewID = $this -> getFieldID( $buttonID );
         $fieldClass = $this -> getFieldClasses( $this -> formSubmitButtonClass, $buttonAdditionalClass );
-        $fieldHTML .= "<button type='submit' id='" . $buttonID . "' class='" . $fieldClass . "' name='" . $buttonName . "' value='submit'";
+        $fieldHTML .= "<button type='submit' id='" . $fieldNewID . "' class='" . $fieldClass . "' name='" . $buttonName . "' value='submit'";
         $fieldHTML .= $this -> addFieldHTMLAttributes( $buttonHTMLAttributes );
         $fieldHTML .= ">{$buttonValue}</button>";
         $fieldHTML .= "</div>";
@@ -229,6 +339,13 @@ class FormBuilder
             return $fieldClass;
         }
     }
+    private function getFieldID( $fieldID ) {
+        if( $this -> formFieldIDAddPrefix ) {
+            return $this -> formID . '-' . $fieldID;
+        } else {
+            return $fieldID;
+        }
+    }
     private function getFieldStatusHTML() {
         $fieldStatusHTML  = '';
         $fieldStatusHTML .= '<div class="form-standard__status-holder">';
@@ -236,6 +353,15 @@ class FormBuilder
         $fieldStatusHTML .= '<span class="form-standard__status-holder-icons"></span>';
         $fieldStatusHTML .= '</div>';
         return $fieldStatusHTML;
+    }
+    private function getErrorMessage( $fieldName ) {
+        $formErrors = Session::get('errors', new ViewErrorBag) -> {'default'} -> messages();
+        if( count( $formErrors ) !== 0 ) {
+            if( key_exists( $fieldName, $formErrors ) ) {
+                return $formErrors[$fieldName][0];
+            }
+        }
+        return '';
     }
 
     private function checkFieldValue( $fieldValue, $fieldName ) {
@@ -245,7 +371,32 @@ class FormBuilder
         if( !empty( $_POST[ $fieldName ] ) ) {
             return $_POST[ $fieldName ];
         }
+        return '';
+    }
+    private function checkRadioValue( $fieldValue, $fieldName ) {
+        if( !empty( $_POST[ $fieldName ] ) ) {
+            if( $fieldValue === $_POST[ $fieldName ] ) {
+                return ' checked';
+            }
+        }
+        return '';
+    }
+    private function checkCheckboxValue( $fieldValue, $fieldName ) {
+        if( !empty( $_POST[ $fieldName ] ) ) {
+            if( $fieldValue === $_POST[ $fieldName ] ) {
+                return ' checked';
+            }
+        }
         return "";
+    }
+    private function checkError( $fieldName ) {
+        $formErrors = Session::get('errors', new ViewErrorBag) -> {'default'} -> messages();
+        if( count( $formErrors ) !== 0 ) {
+            if( key_exists( $fieldName, $formErrors ) ) {
+                return 'error';
+            }
+        }
+        return '';
     }
     private function checkFormID() {
         if( empty( $this -> formID ) ) {

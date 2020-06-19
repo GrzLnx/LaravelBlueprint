@@ -3,50 +3,24 @@
 
 @section( 'content' )
     <main>
+
         <div class="textblock textblock--small-margin-bottom">
             <h1>{{ __('Login') }}</h1>
         </div>
+
         {{ $logInForm -> setFormID( 'form-login' ) }}
+        {{ $logInForm -> setFormFieldIDAddPrefix( true ) }}
         {{ $logInForm -> setFormAction( route( 'login' ) ) }}
         {{ $logInForm -> addCSRFField( csrf_token() ) }}
-        {{ $logInForm -> addTextInputField( ) }}
+        {{ $logInForm -> addEmailInputField( 'email', '', '', 'email', 'autofocus', old( 'email' ), 'E-mail', 'email', true, __('E-Mail Address'), 'required:true' ) }}
+        {{ $logInForm -> addPasswordInputField( 'password', '', '', 'password', '', '', 'Wachtwoord', 'password', true, __('Password'), 'required:true' ) }}
+        {{ $logInForm -> addCheckboxInputField( 'remember', '', '', 'remember', '', '', true, __('Remember Me'), '' ) }}
+        {{ $logInForm -> addSubmitButton( 'submit', '', '', 'submit', '', __( 'Login' ) ) }}
+        @if( Route::has( 'password.request' ) )
+            {{ $logInForm -> addHTML( '<a href="' . route( 'password.request' ) . '">' . __( 'Forgot your password?' ) . '</a>' ) }}
+        @endif
         {{ $logInForm -> renderForm() }}
-        <form class="form form--default form--login" method="POST" action="{{ route('login') }}">
-            @csrf
+        {{-- toevoegen error optie --}}
 
-            <div class="form__field form__text-field form__field--email">
-                <label for="email">{{ __('E-Mail Address') }}</label>
-                <input id="email" type="email" name="email"
-                       value="{{ old( 'email' ) }}" required autocomplete="email" autofocus>
-                <span class="form__icon"></span>
-                @error( 'email' )
-                <span class="form__error-message" role="alert">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="form__field form__text-field form__field--password">
-                <label for="password">{{ __('Password') }}</label>
-                <input id="password" type="password"
-                       name="password" required autocomplete="current-password">
-                <span class="form__icon"></span>
-                @error( 'password' )
-                <span class="form__error-message" role="alert">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="form__field form__checkbox-field form__field--remember">
-                <input type="checkbox" name="remember"
-                       id="remember" {{ old( 'remember' ) ? 'checked' : '' }}>
-                <label for="remember">{{ __('Remember Me') }}</label>
-            </div>
-
-            <div class="form__field form__button-field form__field--submit">
-                <button type="submit" class="button button--default button--with-icon"><i class="fas fa-key icon-holder"></i>{{ __( 'Login' ) }}</button>
-                    @if (Route::has( 'password.request' ))
-                        <a href="{{ route( 'password.request' ) }}">{{ __( 'Forgot your password?' ) }}</a>
-                    @endif
-            </div>
-
-        </form>
     </main>
 @endsection
