@@ -20,7 +20,7 @@
             {{ $logInForm -> addHTML( '<a href="' . route( 'password.request' ) . '">' . __( 'Forgot your password?' ) . '</a>' ) }}
         @endif
         {{ $logInForm -> renderForm() }}
-        {{-- toevoegen error optie --}}
+        {{-- toevoegen error optie = done! zie email veld--}}
 
     </main>
 @endsection

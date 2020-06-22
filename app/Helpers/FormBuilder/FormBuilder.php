@@ -108,10 +108,11 @@ class FormBuilder
 
     public function addTextInputField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $fieldPlaceholder, $fieldAutocomplete, $useLabel, $labelText, $javaScriptChecks ) {
         $fieldHTML  = "";
+        $fieldHasError = $this -> checkError( $fieldName );
         if( empty( $fieldHolderClass ) ) {
-            $fieldHTML .= "<div class='form-standard__field form-standard__field--text' data-field-status=''>";
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--text' data-field-status='{$fieldHasError}'>";
         } else {
-            $fieldHTML .= "<div class='form-standard__field form-standard__field--text {$fieldHolderClass}' data-field-status=''>";
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--text {$fieldHolderClass}' data-field-status='{$fieldHasError}'>";
         }
         $fieldNewID = $this -> getFieldID( $fieldID );
         $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
@@ -121,7 +122,8 @@ class FormBuilder
         $fieldHTML .= $this -> addFieldHTMLAttributes( $fieldHTMLAttributes );
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= "/>";
-        $fieldHTML .= $this -> getFieldStatusHTML();
+        $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
+        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage );
         $fieldHTML .= "</div>";
 
         $this -> formHTML .= $fieldHTML;
@@ -143,18 +145,18 @@ class FormBuilder
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= "/>";
         $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
-        $fieldHTML .= $fieldErrorMessage;
-        $fieldHTML .= $this -> getFieldStatusHTML();
+        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage );
         $fieldHTML .= "</div>";
 
         $this -> formHTML .= $fieldHTML;
     }
     public function addPasswordInputField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $fieldPlaceholder, $fieldAutocomplete, $useLabel, $labelText, $javaScriptChecks ) {
         $fieldHTML  = "";
+        $fieldHasError = $this -> checkError( $fieldName );
         if( empty( $fieldHolderClass ) ) {
-            $fieldHTML .= "<div class='form-standard__field form-standard__field--password' data-field-status=''>";
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--password' data-field-status='{$fieldHasError}'>";
         } else {
-            $fieldHTML .= "<div class='form-standard__field form-standard__field--password {$fieldHolderClass}' data-field-status=''>";
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--password {$fieldHolderClass}' data-field-status='{$fieldHasError}'>";
         }
         $fieldNewID = $this -> getFieldID( $fieldID );
         $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
@@ -164,17 +166,19 @@ class FormBuilder
         $fieldHTML .= $this -> addFieldHTMLAttributes( $fieldHTMLAttributes );
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= "/>";
-        $fieldHTML .= $this -> getFieldStatusHTML();
+        $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
+        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage );
         $fieldHTML .= "</div>";
 
         $this -> formHTML .= $fieldHTML;
     }
     public function addSubmitInputField( $buttonID, $buttonHolderClass, $buttonAdditionalClass, $buttonName, $buttonHTMLAttributes, $buttonValue ) {
         $fieldHTML  = "";
+        $fieldHasError = $this -> checkError( $buttonName );
         if( empty( $buttonHolderClass ) ) {
-            $fieldHTML .= "<div class='form-standard__field form-standard__field--submit' data-field-status=''>";
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--submit' data-field-status='{$fieldHasError}'>";
         } else {
-            $fieldHTML .= "<div class='form-standard__field form-standard__field--submit {$buttonHolderClass}' data-field-status=''>";
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--submit {$buttonHolderClass}' data-field-status='{$fieldHasError}'>";
         }
         $fieldNewID = $this -> getFieldID( $buttonID );
         $fieldClass = $this -> getFieldClasses( $this -> formSubmitInputFieldClass, $buttonAdditionalClass );
@@ -188,10 +192,11 @@ class FormBuilder
 
     public function addRadioInputField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $useLabel, $labelText, $javaScriptChecks ) {
         $fieldHTML  = "";
+        $fieldHasError = $this -> checkError( $fieldName );
         if( empty( $fieldHolderClass ) ) {
-            $fieldHTML .= "<div class='form-standard__field form-standard__field--radio' data-field-status=''>";
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--radio' data-field-status='{$fieldHasError}'>";
         } else {
-            $fieldHTML .= "<div class='form-standard__field form-standard__field--radio {$fieldHolderClass}' data-field-status=''>";
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--radio {$fieldHolderClass}' data-field-status='{$fieldHasError}'>";
         }
         $fieldNewID = $this -> getFieldID( $fieldID );
         $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
@@ -201,17 +206,19 @@ class FormBuilder
         $fieldHTML .= $this -> addFieldHTMLAttributes( $fieldHTMLAttributes );
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= "/>";
-        $fieldHTML .= $this -> getFieldStatusHTML();
+        $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
+        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage );
         $fieldHTML .= "</div>";
 
         $this -> formHTML .= $fieldHTML;
     }
     public function addCheckboxInputField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $useLabel, $labelText, $javaScriptChecks ) {
         $fieldHTML  = "";
+        $fieldHasError = $this -> checkError( $fieldName );
         if( empty( $fieldHolderClass ) ) {
-            $fieldHTML .= "<div class='form-standard__field form-standard__field--checkbox' data-field-status=''>";
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--checkbox' data-field-status='{$fieldHasError}'>";
         } else {
-            $fieldHTML .= "<div class='form-standard__field form-standard__field--checkbox {$fieldHolderClass}' data-field-status=''>";
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--checkbox {$fieldHolderClass}' data-field-status='{$fieldHasError}'>";
         }
         $fieldNewID = $this -> getFieldID( $fieldID );
         $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
@@ -221,7 +228,8 @@ class FormBuilder
         $fieldHTML .= $this -> addFieldHTMLAttributes( $fieldHTMLAttributes );
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= "/>";
-        $fieldHTML .= $this -> getFieldStatusHTML();
+        $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
+        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage );
         $fieldHTML .= "</div>";
 
         $this -> formHTML .= $fieldHTML;
@@ -229,10 +237,11 @@ class FormBuilder
 
     public function addTextareaField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $fieldPlaceholder, $fieldAutocomplete, $useLabel, $labelText, $javaScriptChecks ) {
         $fieldHTML  = "";
+        $fieldHasError = $this -> checkError( $fieldName );
         if( empty( $fieldHolderClass ) ) {
-            $fieldHTML .= "<div class='form-standard__field form-standard__field--textarea' data-field-status=''>";
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--textarea' data-field-status='{$fieldHasError}'>";
         } else {
-            $fieldHTML .= "<div class='form-standard__field form-standard__field--textarea {$fieldHolderClass}' data-field-status=''>";
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--textarea {$fieldHolderClass}' data-field-status='{$fieldHasError}'>";
         }
         $fieldNewID = $this -> getFieldID( $fieldID );
         $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
@@ -242,7 +251,8 @@ class FormBuilder
         $fieldHTML .= $this -> addFieldHTMLAttributes( $fieldHTMLAttributes );
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= ">{$fieldValue}</textarea>";
-        $fieldHTML .= $this -> getFieldStatusHTML();
+        $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
+        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage );
         $fieldHTML .= "</div>";
 
         $this -> formHTML .= $fieldHTML;
@@ -250,10 +260,11 @@ class FormBuilder
 
     public function addSelectField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $fieldAutocomplete, $optionsArray, $useLabel, $labelText, $javaScriptChecks ) {
         $fieldHTML  = "";
+        $fieldHasError = $this -> checkError( $fieldName );
         if( empty( $fieldHolderClass ) ) {
-            $fieldHTML .= "<div class='form-standard__field form-standard__field--select' data-field-status=''>";
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--select' data-field-status='{$fieldHasError}'>";
         } else {
-            $fieldHTML .= "<div class='form-standard__field form-standard__field--select {$fieldHolderClass}' data-field-status=''>";
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--select {$fieldHolderClass}' data-field-status='{$fieldHasError}'>";
         }
         $fieldNewID = $this -> getFieldID( $fieldID );
         $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
@@ -269,7 +280,8 @@ class FormBuilder
             $fieldHTML .= ">" . $option[ 'name' ] . "</option>";
         }
         $fieldHTML .= "</select>";
-        $fieldHTML .= $this -> getFieldStatusHTML();
+        $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
+        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage );
         $fieldHTML .= "</div>";
 
         $this -> formHTML .= $fieldHTML;
@@ -277,10 +289,11 @@ class FormBuilder
 
     public function addSubmitButton( $buttonID, $buttonHolderClass, $buttonAdditionalClass, $buttonName, $buttonHTMLAttributes, $buttonValue ) {
         $fieldHTML  = "";
+        $fieldHasError = $this -> checkError( $buttonName );
         if( empty( $buttonHolderClass ) ) {
-            $fieldHTML .= "<div class='form-standard__field form-standard__field--button' data-field-status=''>";
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--button' data-field-status='{$fieldHasError}'>";
         } else {
-            $fieldHTML .= "<div class='form-standard__field form-standard__field--button {$buttonHolderClass}' data-field-status=''>";
+            $fieldHTML .= "<div class='form-standard__field form-standard__field--button {$buttonHolderClass}' data-field-status='{$fieldHasError}'>";
         }
         $fieldNewID = $this -> getFieldID( $buttonID );
         $fieldClass = $this -> getFieldClasses( $this -> formSubmitButtonClass, $buttonAdditionalClass );
@@ -346,10 +359,10 @@ class FormBuilder
             return $fieldID;
         }
     }
-    private function getFieldStatusHTML() {
+    private function getFieldStatusHTML( $tooltipText ) {
         $fieldStatusHTML  = '';
         $fieldStatusHTML .= '<div class="form-standard__status-holder">';
-        $fieldStatusHTML .= '<span class="form-standard__status-holder-tooltip"></span>';
+        $fieldStatusHTML .= '<span class="form-standard__status-holder-tooltip">' . $tooltipText . '</span>';
         $fieldStatusHTML .= '<span class="form-standard__status-holder-icons"></span>';
         $fieldStatusHTML .= '</div>';
         return $fieldStatusHTML;
