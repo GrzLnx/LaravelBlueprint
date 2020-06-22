@@ -30,6 +30,7 @@ class FormBuilder
     /* Form attributes */
     private $formID = "";
     private $formClass = "form-standard";
+    private $formAdditionalClasses = "";
     private $formAction = "";
     private $formMethod = "POST";
 
@@ -77,12 +78,18 @@ class FormBuilder
     public function setFormClass( $formClass ) {
         $this -> formClass = $formClass;
     }
+    public function setFormAdditionalClasses( $formClasses ) {
+        $this -> formAdditionalClasses = $formClasses;
+    }
     public function setFormID( $formID ) {
         $this -> formID = $formID;
     }
 
     public function getCSRFToken() {
         return $_SESSION[ 'csrf-token' ];
+    }
+    public function getFormAdditionalClasses() {
+        return $this -> formAdditionalClasses;
     }
 
     public function addHTML( $html ) {
@@ -309,7 +316,8 @@ class FormBuilder
         $this -> checkFormID();
         $this -> addHiddenInputField( '__form-id', '', '__form-id', '', $this -> formID, 'required:true' );
 
-        $this -> formElement = "<form class='" . $this -> formClass . "' id='" . $this -> formID . "' action='" . $this -> formAction . "' method='" . $this -> formMethod . "'>";
+        $formClasses = $this -> getFormClasses();
+        $this -> formElement = "<form class='" . $formClasses . "' id='" . $this -> formID . "' action='" . $this -> formAction . "' method='" . $this -> formMethod . "'>";
         $this -> formString .= $this -> formElement;
         $this -> formString .= $this -> formHiddenFieldsHTML;
         $this -> formString .= $this -> formHTML;
@@ -345,6 +353,14 @@ class FormBuilder
         return $fieldHTMLAttributes;
     }
 
+    private function getFormClasses() {
+        $this -> formClass;
+        if( !empty( $this -> formAdditionalClasses ) ) {
+            return $this -> formClass . ' ' . $this -> formAdditionalClasses;
+        } else {
+            return $this -> formClass;
+        }
+    }
     private function getFieldClasses( $fieldClass, $fieldAdditionalClass ) {
         if( !empty( $fieldAdditionalClass ) ) {
             return $fieldClass . ' ' . $fieldAdditionalClass;

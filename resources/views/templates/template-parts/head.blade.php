@@ -10,6 +10,7 @@
     <link rel='dns-prefetch' href='//use.typekit.net' />
     <link rel="preload" href="/css/stylesheet.css" as="style">
     <link rel="preload" href="/css/fontawesome.css" as="style">
+    <link rel="preload" href="/css/linearicons.css" as="style">
     <link rel="preload" href="https://use.typekit.net/ski7rfi.css" as="style">
     <link rel="preload" href="/js/app.js" as="script">
     <!-- Page information and SEO -->
@@ -20,6 +21,7 @@
     <link href="/css/stylesheet.css" rel="stylesheet" type="text/css" media="all" />
     <link href="https://use.typekit.net/ski7rfi.css" rel="stylesheet" type="text/css" media="all">
     <link href="/css/fontawesome.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/linearicons.css" rel="stylesheet" type="text/css" media="all" />
     <script src="/js/app.js" type="text/javascript" defer></script>
     @yield( 'extra-links' )
 </head>

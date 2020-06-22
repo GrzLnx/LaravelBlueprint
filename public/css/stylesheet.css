@@ -15532,6 +15532,8 @@ input[type=search],
 input[type=tel],
 input[type=text],
 input[type=url],
+input[type=checkbox],
+input[type=radio],
 textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -15571,7 +15573,58 @@ fieldset {
 
 input[type=checkbox],
 input[type=radio] {
-  display: inline;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: block;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+}
+
+input[type=checkbox] + label,
+input[type=radio] + label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-transform: none;
+}
+
+input[type=checkbox] + label::before,
+input[type=radio] + label::before {
+  content: "";
+  display: inline-block;
+  min-width: 16px;
+  min-height: 16px;
+  margin-right: 10px;
+  padding: 4px;
+  font-size: 12px;
+  text-align: center;
+  border: 1px solid var(--form-border--color-default);
+  font-family: "LinearIcons", sans-serif;
+  transition: border-color 0.1s ease-in-out;
+}
+
+input[type=checkbox] + label:hover::before,
+input[type=radio] + label:hover::before {
+  border-color: var(--form-border--color-hover);
+}
+
+input[type=checkbox] + label:focus::before,
+input[type=radio] + label:focus::before {
+  border-color: var(--form-border--color-focus);
+}
+
+input[type=checkbox]:checked + label::before,
+input[type=radio]:checked + label::before {
+  content: "\E934";
+}
+
+input[type=checkbox]:focus + label::before,
+input[type=radio]:focus + label::before {
+  border-color: var(--form-border--color-focus);
 }
 
 /******
