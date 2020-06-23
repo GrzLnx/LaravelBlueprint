@@ -20,7 +20,7 @@ class FormBuilder
 
     /* Class form settings */
     private $formDebug = false;
-    private $formFieldIDAddPrefix = false;
+    private $formFieldIDAddPrefix = true;
     private $formUseJavaScriptCheck = true;
     private $formString = "";
     private $formElement = "";
@@ -55,15 +55,6 @@ class FormBuilder
 
     public function __construct() {
         FormBuilder::$uniqueFormNumber++;
-
-        /* Set the variables */
-        $this -> formHiddenInputFieldClass = $this -> formClassPrefix . '__input-hidden-field';
-        $this -> formTextInputFieldClass = $this -> formClassPrefix . '__input-text-field';
-        $this -> formEmailInputFieldClass = $this -> formClassPrefix . '__input-email-field';
-        $this -> formTextareaFieldClass = $this -> formClassPrefix . '__textarea-field';
-
-        $this -> formSubmitInputFieldClass = $this -> formClassPrefix . '__input-submit-field';
-        $this -> formSubmitButtonClass = $this -> formClassPrefix . '__button-submit-field';
     }
 
     public function setFormDebug( $formDebug ) {
@@ -71,6 +62,9 @@ class FormBuilder
     }
     public function setFormFieldIDAddPrefix( $formFieldIDAddPrefix ) {
         $this -> formFieldIDAddPrefix = $formFieldIDAddPrefix;
+    }
+    public function setFormClassPrefix( $formClassPrefix ) {
+        $this -> formClassPrefix = $formClassPrefix;
     }
     public function setFormAction( $formAction ) {
         $this -> formAction = $formAction;
@@ -84,9 +78,27 @@ class FormBuilder
     public function setFormID( $formID ) {
         $this -> formID = $formID;
     }
+    public function setFormClasses() {
+        $this -> formHiddenInputFieldClass = $this -> formClassPrefix . '__input-hidden-field';
+        $this -> formTextInputFieldClass   = $this -> formClassPrefix . '__input-text-field';
+        $this -> formNumberInputFieldClass = $this -> formClassPrefix . '__input-number-field';
+        $this -> formEmailInputFieldClass  = $this -> formClassPrefix . '__input-email-field';
+        $this -> formSearchInputFieldClass = $this -> formClassPrefix . '__input-search-field';
+        $this -> formTimeInputFieldClass   = $this -> formClassPrefix . '__input-time-field';
+        $this -> formDateInputFieldClass   = $this -> formClassPrefix . '__input-date-field';
+        $this -> formFileInputFieldClass   = $this -> formClassPrefix . '__input-file-field';
+        $this -> formTelInputFieldClass    = $this -> formClassPrefix . '__input-tel-field';
+        $this -> formTextareaFieldClass    = $this -> formClassPrefix . '__textarea-field';
+
+        $this -> formSubmitInputFieldClass = $this -> formClassPrefix . '__input-submit-field';
+        $this -> formSubmitButtonClass     = $this -> formClassPrefix . '__button-submit-field';
+    }
 
     public function getCSRFToken() {
         return $_SESSION[ 'csrf-token' ];
+    }
+    public function getFormClassPrefix() {
+        return $this -> formClassPrefix;
     }
     public function getFormAdditionalClasses() {
         return $this -> formAdditionalClasses;
@@ -206,13 +218,13 @@ class FormBuilder
             $fieldHTML .= "<div class='form-standard__field form-standard__field--radio {$fieldHolderClass}' data-field-status='{$fieldHasError}'>";
         }
         $fieldNewID = $this -> getFieldID( $fieldID );
-        $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
         $fieldClass = $this -> getFieldClasses( $this -> formRadioInputFieldClass, $fieldAdditionalClass );
         $fieldCheck = $this -> checkRadioValue( $fieldValue, $fieldName );
         $fieldHTML .= "<input type='radio' id='" . $fieldNewID . "' class='" . $fieldClass . "' name='" . $fieldName . "' value='" . $fieldValue . "{$fieldCheck}'";
         $fieldHTML .= $this -> addFieldHTMLAttributes( $fieldHTMLAttributes );
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= "/>";
+        $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
         $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
         $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage );
         $fieldHTML .= "</div>";
@@ -228,13 +240,13 @@ class FormBuilder
             $fieldHTML .= "<div class='form-standard__field form-standard__field--checkbox {$fieldHolderClass}' data-field-status='{$fieldHasError}'>";
         }
         $fieldNewID = $this -> getFieldID( $fieldID );
-        $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
         $fieldClass = $this -> getFieldClasses( $this -> formCheckboxInputFieldClass, $fieldAdditionalClass );
         $fieldCheck = $this -> checkCheckboxValue( $fieldValue, $fieldName );
         $fieldHTML .= "<input type='checkbox' id='" . $fieldNewID . "' class='" . $fieldClass . "' name='" . $fieldName . "' value='" . $fieldValue . "{$fieldCheck}'";
         $fieldHTML .= $this -> addFieldHTMLAttributes( $fieldHTMLAttributes );
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= "/>";
+        $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
         $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
         $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage );
         $fieldHTML .= "</div>";
@@ -314,7 +326,7 @@ class FormBuilder
 
     public function renderForm() {
         $this -> checkFormID();
-        $this -> addHiddenInputField( '__form-id', '', '__form-id', '', $this -> formID, 'required:true' );
+        $this -> addHiddenInputField( 'form-id', '', '__form-id', '', $this -> formID, 'required:true' );
 
         $formClasses = $this -> getFormClasses();
         $this -> formElement = "<form class='" . $formClasses . "' id='" . $this -> formID . "' action='" . $this -> formAction . "' method='" . $this -> formMethod . "'>";
@@ -339,9 +351,9 @@ class FormBuilder
     }
     private function addJavaScriptChecks( $javaScriptChecks ) {
         if( strlen( $javaScriptChecks ) !== 0 ) {
-            $javaScriptChecksHTML = " data-form-js-check='true' data-form-js-checks='" . $javaScriptChecks . "'";
+            $javaScriptChecksHTML = " data-field-js-check='true' data-field-js-checks='" . $javaScriptChecks . "'";
         } else {
-            $javaScriptChecksHTML = " data-form-js-check='false'";
+            $javaScriptChecksHTML = " data-field-js-check='false'";
         }
         return $javaScriptChecksHTML;
     }

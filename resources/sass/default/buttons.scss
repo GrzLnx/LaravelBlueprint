@@ -1,0 +1,48 @@
+%button {
+    display: inline-block;
+    font-family: var( --font-family--default );
+    font-size: var( --font-size--text );
+    font-weight: var( --font-weight--default );
+    line-height: calc( 22 / 19 );
+    padding: 20px 40px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: normal;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+}
+
+@mixin button( $type: first ) {
+
+    @extend %button;
+
+    @if( $type == first ) {
+        background-color: var( --color-accent--first );
+        color: white;
+    }
+    @if( $type == second  ) {
+        background-color: var( --color-accent--second );
+        color: white;
+    }
+    @if( $type == third  ) {
+        background-color: var( --color-accent--third );
+        color: black;
+    }
+    @if( $type == fourth  ) {
+        background-color: var( --color-accent--fourth );
+        color: black;
+    }
+    @if( $type == fifth  ) {
+        background-color: var( --color-accent--fifth );
+        color: black;
+    }
+
+}
+
+button, input[type="button"], input[type="submit"] {
+    @include button();
+}

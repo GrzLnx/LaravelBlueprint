@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-layout data-theme="dark" data-spaces data-form data-font>
+<html data-layout data-theme data-spaces data-form data-font>
 <head>
     <!-- Meta data -->
     <meta charset="UTF-8">

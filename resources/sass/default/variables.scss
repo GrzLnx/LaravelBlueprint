@@ -261,7 +261,8 @@ html[data-layout] {
 }
 
 /* Variables for the colors */
-html[data-theme="dark"] {
+
+@mixin dark-colors() {
     --color-accent--first:              #{ map-get( $color-accent, first ) };
     --color-accent--second:             #{ map-get( $color-accent, second ) };
     --color-accent--third:              #{ map-get( $color-accent, third ) };
@@ -301,7 +302,7 @@ html[data-theme="dark"] {
     --color-background--fourth-accent:  #{ map-get( $color-background, fourth-accent ) };
     --color-background--fifth-accent:   #{ map-get( $color-background, fifth-accent ) };
 }
-html[data-theme="light"] {
+@mixin light-colors() {
     --color-accent--first:              #{ map-get( $color-accent, first ) };
     --color-accent--second:             #{ map-get( $color-accent, second ) };
     --color-accent--third:              #{ map-get( $color-accent, third ) };
@@ -342,6 +343,46 @@ html[data-theme="light"] {
     --color-background--fifth-accent:   #{ map-get( $color-background, fifth-accent ) };
 }
 
+@mixin first-accent-colors() {
+    @include dark-colors();
+}
+@mixin second-accent-colors() {
+    @include light-colors();
+    --color-accent--second:             #{ map-get( $color-white, default ) };
+    --color-text--default:              #{ map-get( $color-white, default ) };
+    --color-title--second:              #{ map-get( $color-white, default ) };
+    --color-link--hover:                #{ map-get( $color-white, default ) };
+    --color-link--focus:                #{ map-get( $color-white, default ) };
+    --color-link--active:               #{ map-get( $color-white, default ) };
+}
+@mixin third-accent-colors() {
+    @include light-colors();
+}
+@mixin fourth-accent-colors() {
+    @include light-colors();
+}
+@mixin fifth-accent-colors() {
+    @include light-colors();
+}
+
+@media (prefers-color-scheme: dark) {
+    html[data-theme] {
+        @include dark-colors();
+    }
+}
+@media (prefers-color-scheme: light) {
+    html[data-theme] {
+        @include light-colors();
+    }
+}
+
+html[data-theme="dark"] {
+    @include dark-colors();
+}
+html[data-theme="light"] {
+    @include light-colors();
+}
+
 html[data-theme] {
     --color--white:                     #{ map-get( $color-white, default ) };
     --color--black:                     #{ map-get( $color-black, default ) };
@@ -369,21 +410,8 @@ html[data-spaces] {
 }
 
 /* Variables for the forms */
-html[data-form][data-theme="light"] {
-    --form-border--color-default:       #{ map-get( $form-border, color-default ) };
-    --form-border--color-hover:         #{ map-get( $form-border, color-hover ) };
-    --form-border--color-active:        #{ map-get( $form-border, color-active ) };
-    --form-border--color-focus:         #{ map-get( $form-border, color-focus ) };
-    --form-border--color-success:       #{ map-get( $form-border, color-success ) };
-}
-html[data-form][data-theme="dark"] {
-    --form-border--color-default:       #{ map-get( $form-dark-border, color-default ) };
-    --form-border--color-hover:         #{ map-get( $form-dark-border, color-hover ) };
-    --form-border--color-active:        #{ map-get( $form-dark-border, color-active ) };
-    --form-border--color-focus:         #{ map-get( $form-dark-border, color-focus ) };
-    --form-border--color-success:       #{ map-get( $form-dark-border, color-success ) };
-}
-html[data-form] {
+
+@mixin form-colors() {
     --form-border--error:               #{ map-get( $form-border, color-error ) };
     --form-border--size:                #{ map-get( $form-border, size ) };
     --form-border--radius:              #{ map-get( $form-border, radius ) };
@@ -399,6 +427,60 @@ html[data-form] {
     --form-outline--size:               #{ map-get( $form-outline, size ) };
 
     --form-background--default:         #{ map-get( $form-background, default ) };
+}
+@mixin dark-form-colors() {
+    --form-border--color-default:       #{ map-get( $form-dark-border, color-default ) };
+    --form-border--color-hover:         #{ map-get( $form-dark-border, color-hover ) };
+    --form-border--color-active:        #{ map-get( $form-dark-border, color-active ) };
+    --form-border--color-focus:         #{ map-get( $form-dark-border, color-focus ) };
+    --form-border--color-success:       #{ map-get( $form-dark-border, color-success ) };
+}
+@mixin light-form-colors() {
+    --form-border--color-default:       #{ map-get( $form-border, color-default ) };
+    --form-border--color-hover:         #{ map-get( $form-border, color-hover ) };
+    --form-border--color-active:        #{ map-get( $form-border, color-active ) };
+    --form-border--color-focus:         #{ map-get( $form-border, color-focus ) };
+    --form-border--color-success:       #{ map-get( $form-border, color-success ) };
+}
+
+@mixin first-accent-form-colors {
+    @include dark-form-colors();
+}
+@mixin second-accent-form-colors {
+    @include light-form-colors();
+    --form-border--color-default:       #{ darken( map-get( $color-accent, second ), 15% ) };
+}
+@mixin third-accent-form-colors {
+    @include light-form-colors();
+    --form-border--color-default:       #{ darken( map-get( $color-accent, third ), 7.5% ) };
+}
+@mixin fourth-accent-form-colors {
+    @include light-form-colors();
+    --form-border--color-default:       #{ darken( map-get( $color-accent, fourth ), 12.5% ) };
+}
+@mixin fifth-accent-form-colors {
+    @include light-form-colors();
+}
+
+@media (prefers-color-scheme: dark) {
+    html[data-theme] {
+        @include dark-form-colors();
+    }
+}
+@media (prefers-color-scheme: light) {
+    html[data-theme] {
+        @include light-form-colors();
+    }
+}
+
+html[data-form][data-theme="light"] {
+    @include light-form-colors();
+}
+html[data-form][data-theme="dark"] {
+    @include dark-form-colors();
+}
+html[data-form] {
+    @include form-colors();
 }
 
 /* Variables for the font */
