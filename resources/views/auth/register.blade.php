@@ -1,82 +1,28 @@
+@inject('registerForm', \App\Helpers\FormBuilder )
 @extends( 'templates.account-page' )
 
 @section('content')
+    <main>
+        <section class="grid-parent" id="section--register">
 
-    <form method="POST" action="{{ route( 'register' ) }}">
-        @csrf
-
-        <div class="form-group row">
-            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-            <div class="col-md-6">
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                       value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                @error( 'name' )
-                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                @enderror
+            <div class="textblock-standard grid-child">
+                <h1>{{ __('Registreren') }}</h1>
             </div>
-        </div>
 
-        <div class="form-group row">
-            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+            {{ $registerForm -> setFormClasses() }}
+            {{ $registerForm -> setFormID( 'form-register' ) }}
+            {{ $registerForm -> setFormAdditionalClasses( 'grid-child' ) }}
+            {{ $registerForm -> setFormFieldIDAddPrefix( true ) }}
+            {{ $registerForm -> setFormAction( route( 'register' ) ) }}
+            {{ $registerForm -> addCSRFField( csrf_token() ) }}
+            {{ $registerForm -> addTextInputField( 'name', '', '', 'name', 'autofocus', old( 'name' ), 'Naam', 'name', true, __('Naam'), 'required:true' ) }}
+            {{ $registerForm -> addTextInputField( 'username', '', '', 'username', '', old( 'username' ), 'Gebruikersnaam', 'username', true, __('Gebruikersnaam'), 'required:true' ) }}
+            {{ $registerForm -> addEmailInputField( 'email', '', '', 'email', '', old( 'email' ), 'E-mail', 'email', true, __('E-mailadres'), 'required:true' ) }}
+            {{ $registerForm -> addPasswordInputField( 'password', '', '', 'password', '', '', 'Wachtwoord', 'new-password', true, __('Wachtwoord'), 'required:true' ) }}
+            {{ $registerForm -> addPasswordInputField( 'password_confirmation', '', '', 'password_confirmation', '', '', 'Bevestig wachtwoord', 'new-password', true, __('Bevestig wachtwoord'), 'required:true' ) }}
+            {{ $registerForm -> addSubmitButton( 'submit', '', '', 'submit', '', __( 'Registreer' ) ) }}
+            {{ $registerForm -> renderForm() }}
 
-            <div class="col-md-6">
-                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username"
-                       value="{{ old('username') }}" required autocomplete="username" autofocus>
-
-                @error('username')
-                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-            <div class="col-md-6">
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                       value="{{ old('email') }}" required autocomplete="email">
-
-                @error('email')
-                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-            <div class="col-md-6">
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                       name="password" required autocomplete="new-password">
-
-                @error('password')
-                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="password-confirm"
-                   class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-            <div class="col-md-6">
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required
-                       autocomplete="new-password">
-            </div>
-        </div>
-
-        <button type="submit">Registreer</button>
-
-    </form>
-
+        </section>
+    </main>
 @endsection

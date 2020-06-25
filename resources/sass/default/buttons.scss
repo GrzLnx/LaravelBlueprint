@@ -1,4 +1,6 @@
-%button {
+@mixin button( $type: first ) {
+
+    position: relative;
     display: inline-block;
     font-family: var( --font-family--default );
     font-size: var( --font-size--text );
@@ -14,35 +16,80 @@
     -moz-appearance: none;
     appearance: none;
     box-sizing: border-box;
+    overflow: hidden;
+    &::after {
+        content: "";
+        position: absolute;
+        margin: auto;
+        background-color: var( --color--white );
+        height: 0;
+        padding-bottom: calc(100% + 50px);
+        width: calc(100% + 50px);
+        transform: scale(0);
+        top: -25px;
+        right: -25px;
+        bottom: -25px;
+        left: -25px;
+        transition: transform .1s ease-in-out;
+        opacity: 0.1;
+    }
+    &:hover,
+    &:focus,
+    &:active {
+        &::after {
+            transform: scale(1);
+        }
+    }
+
 }
+@mixin button-style( $style: first ) {
 
-@mixin button( $type: first ) {
-
-    @extend %button;
-
-    @if( $type == first ) {
+    @if( $style == first ) {
         background-color: var( --color-accent--first );
-        color: white;
+        color: var( --color--white );
     }
-    @if( $type == second  ) {
+    @if( $style == second  ) {
         background-color: var( --color-accent--second );
-        color: white;
+        color: var( --color--white );
     }
-    @if( $type == third  ) {
+    @if( $style == third  ) {
         background-color: var( --color-accent--third );
-        color: black;
+        color: var( --color--black );
     }
-    @if( $type == fourth  ) {
+    @if( $style == fourth  ) {
         background-color: var( --color-accent--fourth );
-        color: black;
+        color: var( --color--black );
     }
-    @if( $type == fifth  ) {
+    @if( $style == fifth  ) {
         background-color: var( --color-accent--fifth );
-        color: black;
+        color: var( --color--black );
     }
 
 }
 
 button, input[type="button"], input[type="submit"] {
     @include button();
+    @include button-style( $style: first );
+}
+
+section[data-section-background="color-accent--first"] {
+    button, input[type="button"], input[type="submit"] {
+        @include button-style( $style: second );
+    }
+}
+section[data-section-background="color-accent--second"] {
+    button, input[type="button"], input[type="submit"] {
+    }
+}
+section[data-section-background="color-accent--third"] {
+    button, input[type="button"], input[type="submit"] {
+    }
+}
+section[data-section-background="color-accent--fourth"] {
+    button, input[type="button"], input[type="submit"] {
+    }
+}
+section[data-section-background="color-accent--fifth"] {
+    button, input[type="button"], input[type="submit"] {
+    }
 }

@@ -15293,6 +15293,7 @@ TODO:: tekstblok maken / instellen / stylen
 button,
 input[type=button],
 input[type=submit] {
+  position: relative;
   display: inline-block;
   font-family: var(--font-family--default);
   font-size: var(--font-size--text);
@@ -15308,13 +15309,47 @@ input[type=submit] {
   -moz-appearance: none;
   appearance: none;
   box-sizing: border-box;
+  overflow: hidden;
+  background-color: var(--color-accent--first);
+  color: var(--color--white);
 }
 
-button,
-input[type=button],
-input[type=submit] {
-  background-color: var(--color-accent--first);
-  color: white;
+button::after,
+input[type=button]::after,
+input[type=submit]::after {
+  content: "";
+  position: absolute;
+  margin: auto;
+  background-color: var(--color--white);
+  height: 0;
+  padding-bottom: calc(100% + 50px);
+  width: calc(100% + 50px);
+  transform: scale(0);
+  top: -25px;
+  right: -25px;
+  bottom: -25px;
+  left: -25px;
+  transition: transform 0.1s ease-in-out;
+  opacity: 0.1;
+}
+
+button:hover::after,
+button:focus::after,
+button:active::after,
+input[type=button]:hover::after,
+input[type=button]:focus::after,
+input[type=button]:active::after,
+input[type=submit]:hover::after,
+input[type=submit]:focus::after,
+input[type=submit]:active::after {
+  transform: scale(1);
+}
+
+section[data-section-background=color-accent--first] button,
+section[data-section-background=color-accent--first] input[type=button],
+section[data-section-background=color-accent--first] input[type=submit] {
+  background-color: var(--color-accent--second);
+  color: var(--color--white);
 }
 
 /* Default typo styling */
@@ -15870,7 +15905,7 @@ input[type=text],
 input[type=url],
 select,
 textarea {
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   padding: 20px;
   min-width: 650px;
   line-height: 20px;
@@ -16017,6 +16052,7 @@ input[type=radio] + label {
   position: relative;
   display: flex;
   align-items: center;
+  font-size: var(--font-size--text);
   cursor: pointer;
   text-transform: none;
 }
@@ -16096,6 +16132,22 @@ input[type=radio] label:focus::after {
 /******
 * INCLUDES OF OBJECTS FOLDER
 ******/
+
+.textblock-standard *:last-child {
+  margin-bottom: 0;
+}
+
+.form-standard__field {
+  margin-bottom: 15px;
+}
+
+.form-standard__field--hidden {
+  margin-bottom: 0;
+}
+
+.form-standard__field--no-margin-bottom {
+  margin-bottom: 0;
+}
 
 /******
 * INCLUDES OF CUSTOM FOLDER

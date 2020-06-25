@@ -16,25 +16,21 @@ section[data-section-background="color-accent--second"] {
     --section--background-color: var( --color-background--second-accent );
     @include second-accent-colors();
     @include second-accent-form-colors();
-
 }
 section[data-section-background="color-accent--third"] {
     --section--background-color: var( --color-background--third-accent );
     @include third-accent-colors();
     @include third-accent-form-colors();
-
 }
 section[data-section-background="color-accent--fourth"] {
     --section--background-color: var( --color-background--fourth-accent );
     @include fourth-accent-colors();
     @include fourth-accent-form-colors();
-
 }
 section[data-section-background="color-accent--fifth"] {
     --section--background-color: var( --color-background--fifth-accent );
     @include fifth-accent-colors();
     @include fifth-accent-form-colors();
-
 }
 
 .grid-parent {

@@ -26,6 +26,8 @@ class FormBuilder
     private $formElement = "";
     private $formHTML = "";
     private $formHiddenFieldsHTML = "";
+    private $formJSFunction = "";
+    private $formJSString = "";
 
     /* Form attributes */
     private $formID = "";
@@ -324,12 +326,18 @@ class FormBuilder
         $this -> formHTML .= $fieldHTML;
     }
 
+    // form id submit met js als dat moet, onclick js functie uitvoeren
+
     public function renderForm() {
         $this -> checkFormID();
         $this -> addHiddenInputField( 'form-id', '', '__form-id', '', $this -> formID, 'required:true' );
 
         $formClasses = $this -> getFormClasses();
-        $this -> formElement = "<form class='" . $formClasses . "' id='" . $this -> formID . "' action='" . $this -> formAction . "' method='" . $this -> formMethod . "'>";
+        if( $this -> formUseJavaScriptCheck ) {
+            $this -> formElement = "<form class='" . $formClasses . "' id='" . $this -> formID . "' action='" . $this -> formAction . "' method='" . $this -> formMethod . "' onsubmit='return checkForm( this );'>";
+        } else {
+            $this -> formElement = "<form class='" . $formClasses . "' id='" . $this -> formID . "' action='" . $this -> formAction . "' method='" . $this -> formMethod . "'>";
+        }
         $this -> formString .= $this -> formElement;
         $this -> formString .= $this -> formHiddenFieldsHTML;
         $this -> formString .= $this -> formHTML;
@@ -340,6 +348,7 @@ class FormBuilder
         }
 
         echo $this -> formString;
+        echo $this -> formJSString;
     }
 
     private function addLabel( $useLabel, $labelText, $fieldID ) {

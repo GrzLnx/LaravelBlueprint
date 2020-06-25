@@ -7,7 +7,7 @@ input[type=text],
 input[type=url],
 select,
 textarea {
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     padding: 20px;
     min-width: 650px;
     line-height: 20px;
@@ -102,6 +102,7 @@ input[type=radio] {
         position: relative;
         display: flex;
         align-items: center;
+        font-size: var(--font-size--text);
         cursor: pointer;
         text-transform: none;
         &::before {
