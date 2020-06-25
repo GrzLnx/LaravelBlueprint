@@ -334,7 +334,7 @@ class FormBuilder
 
         $formClasses = $this -> getFormClasses();
         if( $this -> formUseJavaScriptCheck ) {
-            $this -> formElement = "<form class='" . $formClasses . "' id='" . $this -> formID . "' action='" . $this -> formAction . "' method='" . $this -> formMethod . "' onsubmit='return checkForm( this );'>";
+            $this -> formElement = "<form class='" . $formClasses . "' id='" . $this -> formID . "' action='" . $this -> formAction . "' method='" . $this -> formMethod . "' novalidate onsubmit='return checkForm( this );'>";
         } else {
             $this -> formElement = "<form class='" . $formClasses . "' id='" . $this -> formID . "' action='" . $this -> formAction . "' method='" . $this -> formMethod . "'>";
         }

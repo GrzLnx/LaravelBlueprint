@@ -35,26 +35,134 @@
                     formStatus = false;
                 }
             }
-            console.log( formStatus );
-            return false;
+            console.log( 'form status: ' + formStatus );
+            return formStatus;
         }
         function checkFormField( form, formField ) {
             let jsChecks = formField.getAttribute( 'data-field-js-checks' ).split( ';' );
+            let fieldStatus = true;
+            let fieldValidator = new FormFieldValidator();
+            let notificationTextHolder = formField.parentElement.querySelector( '.form-standard__status-holder-tooltip' );
+            fieldValidator.Field = formField;
+            fieldValidator.FieldValue = formField.value;
             for( let jsCheck of jsChecks ) {
                 let check = jsCheck.split( ':' );
-                let checkType = check[0];
-                let checkContent = check[1];
-                switch( checkType ) {
-                    case 'required':
-                        if( checkContent == "true" ) {
-                            return formField.value.length !== 0;
-                        }
-                        break;
-                    case 'format':
-                        break;
+                fieldValidator.FieldCheck = check[0];
+                fieldValidator.FieldCheckValue = check[1];
+                if( !fieldValidator.Validate() ) {
+                    console.log( fieldValidator.FieldValidationMessage );
+                    fieldStatus = false;
                 }
             }
-            return true;
+            if( notificationTextHolder !== null ) {
+                notificationTextHolder.innerHTML = '';
+                if( !fieldValidator.FieldValidationMessage === false ) {
+                    notificationTextHolder.innerHTML = fieldValidator.FieldValidationMessage;
+                }
+                if( fieldStatus ) {
+                    notificationTextHolder.innerHTML = '<strong>Dit veld is correct ingevuld!</strong>';
+                }
+            }
+            return fieldStatus;
         }
+
+        class FormFieldValidator {
+
+            constructor() {
+                this.fieldValidationMessage = '';
+                this.returnBoolean = true;
+            }
+
+            set Field( field ) {
+                this.field = field;
+            }
+            set FieldValue( fieldValue ) {
+                this.fieldValue = fieldValue;
+            }
+            set FieldCheck( fieldCheck ) {
+                this.fieldCheck = fieldCheck;
+            }
+            set FieldCheckValue( fieldCheckValue ) {
+                this.fieldCheckValue = fieldCheckValue;
+            }
+            set FieldValidationMessage( fieldValidationMessage ) {
+                this.fieldValidationMessage = fieldValidationMessage;
+            }
+
+            get FieldValidationMessage() {
+                if( this.fieldValidationMessage.length !== 0 ) {
+                    return '<strong>Dit veld bevat de volgende errors:</strong>' + this.fieldValidationMessage;
+                }
+                return false;
+            }
+
+            Validate() {
+                switch( this.fieldCheck ) {
+                    case 'required':
+                        return this.ValidateRequired();
+                    case 'format':
+                        return this.ValidateFormat();
+                    case 'min-length':
+                        return this.ValidateMinLength();
+                    case 'max-length':
+                        return this.ValidateMaxLength();
+                    default:
+                        return true;
+                }
+            }
+
+            ValidateRequired() {
+                if( this.fieldCheckValue ) {
+                    if( this.field.value.length !== 0 ) {
+                        return true;
+                    }
+                    this.fieldValidationMessage += '<br />- Dit veld is verplicht.';
+                    return false;
+                }
+                return true;
+            }
+
+            ValidateFormat() {
+                switch( this.fieldCheckValue ) {
+                    case 'email':
+                        return this.ValidateFormatEmail();
+                    case 'numbers':
+                        return this.ValidateFormatNumbers();
+                    default:
+                        return true;
+                }
+            }
+            ValidateFormatEmail() {
+                if( /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test( this.fieldValue ) ) {
+                    return true;
+                }
+                this.fieldValidationMessage += '<br />- Dit veld moet een geldig e-mailadres bevatten.';
+                return false;
+            }
+            ValidateFormatNumbers() {
+                if( /^\d+$/.test( this.fieldValue ) ) {
+                    return true;
+                }
+                this.fieldValidationMessage += '<br />- Dit veld mag enkel cijfers bevatten.';
+                return false;
+            }
+
+            ValidateMinLength() {
+                if( this.fieldValue.length >= this.fieldCheckValue ) {
+                    return true;
+                }
+                this.fieldValidationMessage += '<br />- Dit veld moet minstens ' + this.fieldCheckValue + ' tekens bevatten.';
+                return false;
+            }
+            ValidateMaxLength() {
+                if( this.fieldValue.length <= this.fieldCheckValue ) {
+                    return true;
+                }
+                this.fieldValidationMessage += '<br />- Dit veld mag maximaal ' + this.fieldCheckValue + ' tekens bevatten.';
+                return false;
+            }
+
+        }
+
     </script>
 @endsection
