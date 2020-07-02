@@ -62,6 +62,9 @@ class FormBuilder
     public function setFormDebug( $formDebug ) {
         $this -> formDebug = $formDebug;
     }
+    public function setFormUseJavaScriptCheck( $formJavaScriptCheck ) {
+        $this -> formUseJavaScriptCheck = $formJavaScriptCheck;
+    }
     public function setFormFieldIDAddPrefix( $formFieldIDAddPrefix ) {
         $this -> formFieldIDAddPrefix = $formFieldIDAddPrefix;
     }
@@ -144,7 +147,7 @@ class FormBuilder
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= "/>";
         $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
-        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage );
+        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage, $fieldNewID );
         $fieldHTML .= "</div>";
 
         $this -> formHTML .= $fieldHTML;
@@ -166,7 +169,7 @@ class FormBuilder
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= "/>";
         $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
-        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage );
+        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage, $fieldNewID );
         $fieldHTML .= "</div>";
 
         $this -> formHTML .= $fieldHTML;
@@ -188,7 +191,7 @@ class FormBuilder
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= "/>";
         $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
-        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage );
+        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage, $fieldNewID );
         $fieldHTML .= "</div>";
 
         $this -> formHTML .= $fieldHTML;
@@ -228,7 +231,7 @@ class FormBuilder
         $fieldHTML .= "/>";
         $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
         $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
-        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage );
+        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage, $fieldNewID );
         $fieldHTML .= "</div>";
 
         $this -> formHTML .= $fieldHTML;
@@ -250,7 +253,7 @@ class FormBuilder
         $fieldHTML .= "/>";
         $fieldHTML .= $this -> addLabel( $useLabel, $labelText, $fieldNewID );
         $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
-        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage );
+        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage, $fieldNewID );
         $fieldHTML .= "</div>";
 
         $this -> formHTML .= $fieldHTML;
@@ -273,7 +276,7 @@ class FormBuilder
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= ">{$fieldValue}</textarea>";
         $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
-        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage );
+        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage, $fieldNewID );
         $fieldHTML .= "</div>";
 
         $this -> formHTML .= $fieldHTML;
@@ -302,7 +305,7 @@ class FormBuilder
         }
         $fieldHTML .= "</select>";
         $fieldErrorMessage = $this -> getErrorMessage( $fieldName );
-        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage );
+        $fieldHTML .= $this -> getFieldStatusHTML( $fieldErrorMessage, $fieldNewID );
         $fieldHTML .= "</div>";
 
         $this -> formHTML .= $fieldHTML;
@@ -330,7 +333,7 @@ class FormBuilder
 
     public function renderForm() {
         $this -> checkFormID();
-        $this -> addHiddenInputField( 'form-id', '', '__form-id', '', $this -> formID, 'required:true' );
+        $this -> addHiddenInputField( 'form-id', '', 'form-id', '', $this -> formID, 'required:true' );
 
         $formClasses = $this -> getFormClasses();
         if( $this -> formUseJavaScriptCheck ) {
@@ -396,12 +399,16 @@ class FormBuilder
             return $fieldID;
         }
     }
-    private function getFieldStatusHTML( $tooltipText ) {
+    private function getFieldStatusHTML( $tooltipText, $fieldID ) {
         $fieldStatusHTML  = '';
-        $fieldStatusHTML .= '<div class="form-standard__status-holder">';
-        $fieldStatusHTML .= '<span class="form-standard__status-holder-tooltip">' . $tooltipText . '</span>';
+        $fieldStatusHTML .= '<label for="' . $fieldID . '" class="form-standard__status-holder">';
+        if( strlen( $tooltipText ) !== 0 ) {
+            $fieldStatusHTML .= '<span class="form-standard__status-holder-tooltip"><strong>Dit veld bevat de volgende errors:</strong><br />' . $tooltipText . '</span>';
+        } else {
+            $fieldStatusHTML .= '<span class="form-standard__status-holder-tooltip"></span>';
+        }
         $fieldStatusHTML .= '<span class="form-standard__status-holder-icons"></span>';
-        $fieldStatusHTML .= '</div>';
+        $fieldStatusHTML .= '</label>';
         return $fieldStatusHTML;
     }
     private function getErrorMessage( $fieldName ) {
@@ -455,14 +462,13 @@ class FormBuilder
     }
 
     private function debug() {
-        if( !empty( $_POST[ 'submit' ] ) ) {
-
-            /* Debug the CSRF */
+            /* Debug the CSRF
             if( hash_equals( $_SESSION[ 'csrf-token' ], $_POST[ 'csrf' ] ) ) {
                 echo '<pre>The CSRF is correct. <br />The submitted CSRF was: ' . $_POST[ 'csrf' ] . '<br />The correct CSRF was: ' . $_SESSION[ 'csrf-token' ] . '</pre>';
             } else {
                 echo '<pre>The CSRF is correct. <br />The submitted CSRF was: ' . $_POST[ 'csrf' ] . '<br />The correct CSRF was: ' . $_SESSION[ 'csrf-token' ] . '</pre>';
             }
+            */
 
             /* Debug the post data */
             echo '<pre>';
@@ -471,7 +477,6 @@ class FormBuilder
             }
             echo '</pre>';
 
-        }
     }
 
 }

@@ -1,9 +1,10 @@
 section {
     --section--background-color: var( --color-background--default );
-    padding: 75px 50px 50px;
+    padding: 75px 50px 25px;
 }
 
 section[data-section-background] {
+    color: var(--color-text--default);
     background-color: var( --section--background-color );
     @include form-colors();
 }
@@ -42,7 +43,7 @@ section[data-section-background="color-accent--fifth"] {
 
 .grid-child {
     display: inline-grid;
-    margin-bottom: 25px;
+    margin-bottom: 50px;
     padding: 0 25px;
     grid-column: span 12;
     grid-row: span 1;

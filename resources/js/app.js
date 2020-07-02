@@ -5,6 +5,7 @@
  */
 
 require('./default/functions');
+require('./includes/form');
 // window.Vue = require('vue');
 
 /**

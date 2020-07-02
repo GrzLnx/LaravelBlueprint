@@ -1,0 +1,28 @@
+$max-width-values: 100, 200, 300, 400, 450, 500, 550,
+                   600, 650, 700, 750, 800, 850, 900,
+                   950, 1000, 1100, 1200, 1300, 1400,
+                   1500, 1600, 1700, 1800, 1900, 2000;
+@each $max-width-value in $max-width-values {
+    .object-max-width--#{ $max-width-value } {
+        max-width: #{ $max-width-value }px;
+    }
+}
+
+$margin-values: 5, 10, 15, 20, 25, 30, 35, 40, 45, 50,
+                55, 60, 65, 70, 75, 80, 85, 90, 95, 100,
+                105, 110, 115, 120, 125, 130, 135, 140,
+                145, 150;
+@each $margin-value in $margin-values {
+    .object-margin-top--#{ $margin-value } {
+        margin-top: #{ $margin-value }px;
+    }
+    .object-margin-right--#{ $margin-value } {
+        margin-right: #{ $margin-value }px;
+    }
+    .object-margin-bottom--#{ $margin-value } {
+        margin-bottom: #{ $margin-value }px;
+    }
+    .object-margin-left--#{ $margin-value } {
+        margin-left: #{ $margin-value }px;
+    }
+}

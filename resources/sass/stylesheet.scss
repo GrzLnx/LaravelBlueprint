@@ -15,11 +15,13 @@
 @import "default/typo";
 @import "default/layout";
 @import "default/form";
+@import "default/custom-elements";
 
 /******
 * INCLUDES OF OBJECTS FOLDER
 ******/
 
+@import "objects/object-classes";
 @import "objects/textblocks/textblock-standard";
 @import "objects/forms/form-standard";
 

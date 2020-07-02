@@ -15023,44 +15023,6 @@ html[data-layout] {
 
 /* Variables for the colors */
 
-@media (prefers-color-scheme: dark) {
-  html[data-theme] {
-    --color-accent--first: #1E212B;
-    --color-accent--second: #4D8B31;
-    --color-accent--third: #FFC800;
-    --color-accent--fourth: #FF8427;
-    --color-accent--fifth: #FFFFFF;
-    --color-text--default: #FFFFFF;
-    --color-text--first: #F3F2F1;
-    --color-text--second: #F6F6F6;
-    --color-text--third: #E4E5E5;
-    --color-text--white: #FFFFFF;
-    --color-text--black: #000000;
-    --color-title--default: #FF8427;
-    --color-title--first: #FF8427;
-    --color-title--second: #FFC800;
-    --color-title--third: #FFFFFF;
-    --color-link--default: #FFC800;
-    --color-link--visited: #FFC800;
-    --color-link--hover: #4D8B31;
-    --color-link--focus: #4D8B31;
-    --color-link--active: #4D8B31;
-    --color-border--first: #333333;
-    --color-border--second: #E4E5E5;
-    --color-border--third: #D3D3D3;
-    --color-border--white: #FFFFFF;
-    --color-border--black: #000000;
-    --color-background--default: #111111;
-    --color-background--light: #F6F6F6;
-    --color-background--dark: #111111;
-    --color-background--first-accent: #1E212B;
-    --color-background--second-accent: #4D8B31;
-    --color-background--third-accent: #FFC800;
-    --color-background--fourth-accent: #FF8427;
-    --color-background--fifth-accent: #FFFFFF;
-  }
-}
-
 @media (prefers-color-scheme: light) {
   html[data-theme] {
     --color-accent--first: #1E212B;
@@ -15089,6 +15051,44 @@ html[data-layout] {
     --color-border--white: #FFFFFF;
     --color-border--black: #000000;
     --color-background--default: #FFFFFF;
+    --color-background--light: #F6F6F6;
+    --color-background--dark: #111111;
+    --color-background--first-accent: #1E212B;
+    --color-background--second-accent: #4D8B31;
+    --color-background--third-accent: #FFC800;
+    --color-background--fourth-accent: #FF8427;
+    --color-background--fifth-accent: #FFFFFF;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme] {
+    --color-accent--first: #1E212B;
+    --color-accent--second: #4D8B31;
+    --color-accent--third: #FFC800;
+    --color-accent--fourth: #FF8427;
+    --color-accent--fifth: #FFFFFF;
+    --color-text--default: #FFFFFF;
+    --color-text--first: #F3F2F1;
+    --color-text--second: #F6F6F6;
+    --color-text--third: #E4E5E5;
+    --color-text--white: #FFFFFF;
+    --color-text--black: #000000;
+    --color-title--default: #FF8427;
+    --color-title--first: #FF8427;
+    --color-title--second: #FFC800;
+    --color-title--third: #FFFFFF;
+    --color-link--default: #FFC800;
+    --color-link--visited: #FFC800;
+    --color-link--hover: #4D8B31;
+    --color-link--focus: #4D8B31;
+    --color-link--active: #4D8B31;
+    --color-border--first: #333333;
+    --color-border--second: #E4E5E5;
+    --color-border--third: #D3D3D3;
+    --color-border--white: #FFFFFF;
+    --color-border--black: #000000;
+    --color-background--default: #111111;
     --color-background--light: #F6F6F6;
     --color-background--dark: #111111;
     --color-background--first-accent: #1E212B;
@@ -15186,7 +15186,7 @@ html[data-spaces] {
   --space-layout--small: 10px;
   --space-layout--large: 40px;
   --space-layout--section: 25px;
-  --space-layout--object: 25px;
+  --space-layout--object: 50px;
   --space-title--h1: 25px;
   --space-title--h2: 25px;
   --space-title--h3: 25px;
@@ -15198,16 +15198,6 @@ html[data-spaces] {
 
 /* Variables for the forms */
 
-@media (prefers-color-scheme: dark) {
-  html[data-theme] {
-    --form-border--color-default: var(--color-border--first);
-    --form-border--color-hover: var(--color-accent--third);
-    --form-border--color-active: var(--color-accent--third);
-    --form-border--color-focus: var(--color-accent--third);
-    --form-border--color-success: ;
-  }
-}
-
 @media (prefers-color-scheme: light) {
   html[data-theme] {
     --form-border--color-default: var(--color-border--first);
@@ -15215,6 +15205,20 @@ html[data-spaces] {
     --form-border--color-active: var(--color-accent--first);
     --form-border--color-focus: var(--color-accent--first);
     --form-border--color-success: #8CF258;
+    --form-status--background-color: #F6F6F6;
+    --form-status--color: #333333;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme] {
+    --form-border--color-default: var(--color-border--first);
+    --form-border--color-hover: var(--color-accent--third);
+    --form-border--color-active: var(--color-accent--third);
+    --form-border--color-focus: var(--color-accent--first);
+    --form-border--color-success: #8CF258;
+    --form-status--background-color: #242323;
+    --form-status--color: #E4E5E5;
   }
 }
 
@@ -15224,14 +15228,18 @@ html[data-form][data-theme=light] {
   --form-border--color-active: var(--color-accent--first);
   --form-border--color-focus: var(--color-accent--first);
   --form-border--color-success: #8CF258;
+  --form-status--background-color: #F6F6F6;
+  --form-status--color: #333333;
 }
 
 html[data-form][data-theme=dark] {
   --form-border--color-default: var(--color-border--first);
   --form-border--color-hover: var(--color-accent--third);
   --form-border--color-active: var(--color-accent--third);
-  --form-border--color-focus: var(--color-accent--third);
-  --form-border--color-success: ;
+  --form-border--color-focus: var(--color-accent--first);
+  --form-border--color-success: #8CF258;
+  --form-status--background-color: #242323;
+  --form-status--color: #E4E5E5;
 }
 
 html[data-form] {
@@ -15453,10 +15461,11 @@ a:not(.button):active {
 
 section {
   --section--background-color: var( --color-background--default );
-  padding: 75px 50px 50px;
+  padding: 75px 50px 25px;
 }
 
 section[data-section-background] {
+  color: var(--color-text--default);
   background-color: var(--section--background-color);
   --form-border--error: #CE0018;
   --form-border--size: 1px;
@@ -15510,8 +15519,8 @@ section[data-section-background=color-accent--first] {
   --form-border--color-default: var(--color-border--first);
   --form-border--color-hover: var(--color-accent--third);
   --form-border--color-active: var(--color-accent--third);
-  --form-border--color-focus: var(--color-accent--third);
-  --form-border--color-success: ;
+  --form-border--color-focus: var(--color-accent--first);
+  --form-border--color-success: #8CF258;
 }
 
 section[data-section-background=color-accent--second] {
@@ -15598,6 +15607,10 @@ section[data-section-background=color-accent--third] {
   --color-background--third-accent: #FFC800;
   --color-background--fourth-accent: #FF8427;
   --color-background--fifth-accent: #FFFFFF;
+  --color-link--default: #FF8427;
+  --color-link--visited: #FF8427;
+  --color-link--focus: #FF8427;
+  --color-link--active: #FF8427;
   --form-border--color-default: var(--color-border--first);
   --form-border--color-hover: var(--color-accent--first);
   --form-border--color-active: var(--color-accent--first);
@@ -15700,7 +15713,7 @@ section[data-section-background=color-accent--fifth] {
 
 .grid-child {
   display: inline-grid;
-  margin-bottom: 25px;
+  margin-bottom: 50px;
   padding: 0 25px;
   grid-column: span 12;
   grid-row: span 1;
@@ -16129,24 +16142,702 @@ input[type=radio] label:focus::after {
   background-color: var(--form-border--color-focus);
 }
 
+hold-line {
+  display: inline-block;
+}
+
 /******
 * INCLUDES OF OBJECTS FOLDER
 ******/
+
+.object-max-width--100 {
+  max-width: 100px;
+}
+
+.object-max-width--200 {
+  max-width: 200px;
+}
+
+.object-max-width--300 {
+  max-width: 300px;
+}
+
+.object-max-width--400 {
+  max-width: 400px;
+}
+
+.object-max-width--450 {
+  max-width: 450px;
+}
+
+.object-max-width--500 {
+  max-width: 500px;
+}
+
+.object-max-width--550 {
+  max-width: 550px;
+}
+
+.object-max-width--600 {
+  max-width: 600px;
+}
+
+.object-max-width--650 {
+  max-width: 650px;
+}
+
+.object-max-width--700 {
+  max-width: 700px;
+}
+
+.object-max-width--750 {
+  max-width: 750px;
+}
+
+.object-max-width--800 {
+  max-width: 800px;
+}
+
+.object-max-width--850 {
+  max-width: 850px;
+}
+
+.object-max-width--900 {
+  max-width: 900px;
+}
+
+.object-max-width--950 {
+  max-width: 950px;
+}
+
+.object-max-width--1000 {
+  max-width: 1000px;
+}
+
+.object-max-width--1100 {
+  max-width: 1100px;
+}
+
+.object-max-width--1200 {
+  max-width: 1200px;
+}
+
+.object-max-width--1300 {
+  max-width: 1300px;
+}
+
+.object-max-width--1400 {
+  max-width: 1400px;
+}
+
+.object-max-width--1500 {
+  max-width: 1500px;
+}
+
+.object-max-width--1600 {
+  max-width: 1600px;
+}
+
+.object-max-width--1700 {
+  max-width: 1700px;
+}
+
+.object-max-width--1800 {
+  max-width: 1800px;
+}
+
+.object-max-width--1900 {
+  max-width: 1900px;
+}
+
+.object-max-width--2000 {
+  max-width: 2000px;
+}
+
+.object-margin-top--5 {
+  margin-top: 5px;
+}
+
+.object-margin-right--5 {
+  margin-right: 5px;
+}
+
+.object-margin-bottom--5 {
+  margin-bottom: 5px;
+}
+
+.object-margin-left--5 {
+  margin-left: 5px;
+}
+
+.object-margin-top--10 {
+  margin-top: 10px;
+}
+
+.object-margin-right--10 {
+  margin-right: 10px;
+}
+
+.object-margin-bottom--10 {
+  margin-bottom: 10px;
+}
+
+.object-margin-left--10 {
+  margin-left: 10px;
+}
+
+.object-margin-top--15 {
+  margin-top: 15px;
+}
+
+.object-margin-right--15 {
+  margin-right: 15px;
+}
+
+.object-margin-bottom--15 {
+  margin-bottom: 15px;
+}
+
+.object-margin-left--15 {
+  margin-left: 15px;
+}
+
+.object-margin-top--20 {
+  margin-top: 20px;
+}
+
+.object-margin-right--20 {
+  margin-right: 20px;
+}
+
+.object-margin-bottom--20 {
+  margin-bottom: 20px;
+}
+
+.object-margin-left--20 {
+  margin-left: 20px;
+}
+
+.object-margin-top--25 {
+  margin-top: 25px;
+}
+
+.object-margin-right--25 {
+  margin-right: 25px;
+}
+
+.object-margin-bottom--25 {
+  margin-bottom: 25px;
+}
+
+.object-margin-left--25 {
+  margin-left: 25px;
+}
+
+.object-margin-top--30 {
+  margin-top: 30px;
+}
+
+.object-margin-right--30 {
+  margin-right: 30px;
+}
+
+.object-margin-bottom--30 {
+  margin-bottom: 30px;
+}
+
+.object-margin-left--30 {
+  margin-left: 30px;
+}
+
+.object-margin-top--35 {
+  margin-top: 35px;
+}
+
+.object-margin-right--35 {
+  margin-right: 35px;
+}
+
+.object-margin-bottom--35 {
+  margin-bottom: 35px;
+}
+
+.object-margin-left--35 {
+  margin-left: 35px;
+}
+
+.object-margin-top--40 {
+  margin-top: 40px;
+}
+
+.object-margin-right--40 {
+  margin-right: 40px;
+}
+
+.object-margin-bottom--40 {
+  margin-bottom: 40px;
+}
+
+.object-margin-left--40 {
+  margin-left: 40px;
+}
+
+.object-margin-top--45 {
+  margin-top: 45px;
+}
+
+.object-margin-right--45 {
+  margin-right: 45px;
+}
+
+.object-margin-bottom--45 {
+  margin-bottom: 45px;
+}
+
+.object-margin-left--45 {
+  margin-left: 45px;
+}
+
+.object-margin-top--50 {
+  margin-top: 50px;
+}
+
+.object-margin-right--50 {
+  margin-right: 50px;
+}
+
+.object-margin-bottom--50 {
+  margin-bottom: 50px;
+}
+
+.object-margin-left--50 {
+  margin-left: 50px;
+}
+
+.object-margin-top--55 {
+  margin-top: 55px;
+}
+
+.object-margin-right--55 {
+  margin-right: 55px;
+}
+
+.object-margin-bottom--55 {
+  margin-bottom: 55px;
+}
+
+.object-margin-left--55 {
+  margin-left: 55px;
+}
+
+.object-margin-top--60 {
+  margin-top: 60px;
+}
+
+.object-margin-right--60 {
+  margin-right: 60px;
+}
+
+.object-margin-bottom--60 {
+  margin-bottom: 60px;
+}
+
+.object-margin-left--60 {
+  margin-left: 60px;
+}
+
+.object-margin-top--65 {
+  margin-top: 65px;
+}
+
+.object-margin-right--65 {
+  margin-right: 65px;
+}
+
+.object-margin-bottom--65 {
+  margin-bottom: 65px;
+}
+
+.object-margin-left--65 {
+  margin-left: 65px;
+}
+
+.object-margin-top--70 {
+  margin-top: 70px;
+}
+
+.object-margin-right--70 {
+  margin-right: 70px;
+}
+
+.object-margin-bottom--70 {
+  margin-bottom: 70px;
+}
+
+.object-margin-left--70 {
+  margin-left: 70px;
+}
+
+.object-margin-top--75 {
+  margin-top: 75px;
+}
+
+.object-margin-right--75 {
+  margin-right: 75px;
+}
+
+.object-margin-bottom--75 {
+  margin-bottom: 75px;
+}
+
+.object-margin-left--75 {
+  margin-left: 75px;
+}
+
+.object-margin-top--80 {
+  margin-top: 80px;
+}
+
+.object-margin-right--80 {
+  margin-right: 80px;
+}
+
+.object-margin-bottom--80 {
+  margin-bottom: 80px;
+}
+
+.object-margin-left--80 {
+  margin-left: 80px;
+}
+
+.object-margin-top--85 {
+  margin-top: 85px;
+}
+
+.object-margin-right--85 {
+  margin-right: 85px;
+}
+
+.object-margin-bottom--85 {
+  margin-bottom: 85px;
+}
+
+.object-margin-left--85 {
+  margin-left: 85px;
+}
+
+.object-margin-top--90 {
+  margin-top: 90px;
+}
+
+.object-margin-right--90 {
+  margin-right: 90px;
+}
+
+.object-margin-bottom--90 {
+  margin-bottom: 90px;
+}
+
+.object-margin-left--90 {
+  margin-left: 90px;
+}
+
+.object-margin-top--95 {
+  margin-top: 95px;
+}
+
+.object-margin-right--95 {
+  margin-right: 95px;
+}
+
+.object-margin-bottom--95 {
+  margin-bottom: 95px;
+}
+
+.object-margin-left--95 {
+  margin-left: 95px;
+}
+
+.object-margin-top--100 {
+  margin-top: 100px;
+}
+
+.object-margin-right--100 {
+  margin-right: 100px;
+}
+
+.object-margin-bottom--100 {
+  margin-bottom: 100px;
+}
+
+.object-margin-left--100 {
+  margin-left: 100px;
+}
+
+.object-margin-top--105 {
+  margin-top: 105px;
+}
+
+.object-margin-right--105 {
+  margin-right: 105px;
+}
+
+.object-margin-bottom--105 {
+  margin-bottom: 105px;
+}
+
+.object-margin-left--105 {
+  margin-left: 105px;
+}
+
+.object-margin-top--110 {
+  margin-top: 110px;
+}
+
+.object-margin-right--110 {
+  margin-right: 110px;
+}
+
+.object-margin-bottom--110 {
+  margin-bottom: 110px;
+}
+
+.object-margin-left--110 {
+  margin-left: 110px;
+}
+
+.object-margin-top--115 {
+  margin-top: 115px;
+}
+
+.object-margin-right--115 {
+  margin-right: 115px;
+}
+
+.object-margin-bottom--115 {
+  margin-bottom: 115px;
+}
+
+.object-margin-left--115 {
+  margin-left: 115px;
+}
+
+.object-margin-top--120 {
+  margin-top: 120px;
+}
+
+.object-margin-right--120 {
+  margin-right: 120px;
+}
+
+.object-margin-bottom--120 {
+  margin-bottom: 120px;
+}
+
+.object-margin-left--120 {
+  margin-left: 120px;
+}
+
+.object-margin-top--125 {
+  margin-top: 125px;
+}
+
+.object-margin-right--125 {
+  margin-right: 125px;
+}
+
+.object-margin-bottom--125 {
+  margin-bottom: 125px;
+}
+
+.object-margin-left--125 {
+  margin-left: 125px;
+}
+
+.object-margin-top--130 {
+  margin-top: 130px;
+}
+
+.object-margin-right--130 {
+  margin-right: 130px;
+}
+
+.object-margin-bottom--130 {
+  margin-bottom: 130px;
+}
+
+.object-margin-left--130 {
+  margin-left: 130px;
+}
+
+.object-margin-top--135 {
+  margin-top: 135px;
+}
+
+.object-margin-right--135 {
+  margin-right: 135px;
+}
+
+.object-margin-bottom--135 {
+  margin-bottom: 135px;
+}
+
+.object-margin-left--135 {
+  margin-left: 135px;
+}
+
+.object-margin-top--140 {
+  margin-top: 140px;
+}
+
+.object-margin-right--140 {
+  margin-right: 140px;
+}
+
+.object-margin-bottom--140 {
+  margin-bottom: 140px;
+}
+
+.object-margin-left--140 {
+  margin-left: 140px;
+}
+
+.object-margin-top--145 {
+  margin-top: 145px;
+}
+
+.object-margin-right--145 {
+  margin-right: 145px;
+}
+
+.object-margin-bottom--145 {
+  margin-bottom: 145px;
+}
+
+.object-margin-left--145 {
+  margin-left: 145px;
+}
+
+.object-margin-top--150 {
+  margin-top: 150px;
+}
+
+.object-margin-right--150 {
+  margin-right: 150px;
+}
+
+.object-margin-bottom--150 {
+  margin-bottom: 150px;
+}
+
+.object-margin-left--150 {
+  margin-left: 150px;
+}
+
+.textblock-standard {
+  margin-bottom: 35px;
+}
 
 .textblock-standard *:last-child {
   margin-bottom: 0;
 }
 
+.form-standard {
+  --form-field--label-height: 23px;
+}
+
 .form-standard__field {
+  position: relative;
   margin-bottom: 15px;
+}
+
+.form-standard__field[data-field-status=success] .form-standard__status-holder {
+  display: block;
+}
+
+.form-standard__field[data-field-status=success] .form-standard__status-holder-icons::before {
+  content: "\E934";
+  color: var(--color-icon--success);
+}
+
+.form-standard__field[data-field-status=error] .form-standard__status-holder {
+  display: block;
+}
+
+.form-standard__field[data-field-status=error] .form-standard__status-holder-icons::before {
+  content: "\E935";
+  color: var(--color-icon--error);
 }
 
 .form-standard__field--hidden {
   margin-bottom: 0;
 }
 
+.form-standard__field--checkbox .form-standard__status-holder {
+  top: 0;
+  height: 26px;
+}
+
 .form-standard__field--no-margin-bottom {
   margin-bottom: 0;
+}
+
+.form-standard__status-holder {
+  position: absolute;
+  display: none;
+  top: calc(var( --form-field--label-height ) + 10px);
+  right: 0;
+  height: 62px;
+  width: 62px;
+  margin-bottom: 0;
+  text-transform: none;
+}
+
+.form-standard__status-holder:hover .form-standard__status-holder-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.form-standard__status-holder-tooltip {
+  position: absolute;
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  left: 50%;
+  bottom: 100%;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  max-width: 350px;
+  transform: translateX(-50%);
+  line-height: 1.2;
+  padding: 10px;
+  background-color: var(--form-status--background-color);
+  color: var(--form-status--color);
+  border-radius: 2px;
+  transition: opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
+  box-sizing: border-box;
+}
+
+.form-standard__status-holder-tooltip strong {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.form-standard__status-holder-icons {
+  position: absolute;
+  display: flex;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-standard__status-holder-icons::before {
+  font-family: "LinearIcons", sans-serif;
+  content: "";
 }
 
 /******

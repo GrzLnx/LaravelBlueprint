@@ -1,13 +1,28 @@
 .form-standard {
+    $block: &;
+    --form-field--label-height: 23px;
 
     &__field {
+        position: relative;
         margin-bottom: 15px;
 
         &[data-field-status="success"] {
-
+            #{$block}__status-holder {
+                display: block;
+            }
+            #{$block}__status-holder-icons::before {
+                content: "\E934";
+                color: var( --color-icon--success );
+            }
         }
         &[data-field-status="error"] {
-
+            #{$block}__status-holder {
+                display: block;
+            }
+            #{$block}__status-holder-icons::before {
+                content: "\E935";
+                color: var( --color-icon--error );
+            }
         }
 
         &--hidden {
@@ -20,13 +35,69 @@
 
         }
 
+        &--checkbox {
+            #{$block}__status-holder {
+                top: 0;
+                height: 26px;
+            }
+        }
+
         &--no-margin-bottom {
             margin-bottom: 0;
         }
 
     }
     &__status-holder {
-
+        position: absolute;
+        display: none;
+        top: calc(var( --form-field--label-height ) + 10px);
+        right: 0;
+        height: 62px;
+        width: 62px;
+        margin-bottom: 0;
+        text-transform: none;
+        &:hover {
+            #{$block}__status-holder-tooltip {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }
+    &__status-holder-tooltip {
+        position: absolute;
+        display: block;
+        visibility: hidden;
+        opacity: 0;
+        left: 50%;
+        bottom: 100%;
+        width: max-content;
+        max-width: 350px;
+        transform: translateX(-50%);
+        line-height: 1.2;
+        padding: 10px;
+        background-color: var( --form-status--background-color );
+        color: var( --form-status--color );
+        border-radius: 2px;
+        transition: opacity .1s ease-in-out, visibility .1s ease-in-out;
+        box-sizing: border-box;
+        strong {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+    }
+    &__status-holder-icons {
+        position: absolute;
+        display: flex;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        justify-content: center;
+        align-items: center;
+        &::before {
+            font-family: "LinearIcons", sans-serif;
+            content: "";
+        }
     }
 
 }

@@ -6,13 +6,15 @@
                 <h2>Kies een applicatie</h2>
                 <ul>
                     <li><a href="/">Overzicht</a></li>
-                    <li><a href="/calender">Kalender</a></li>
+                    <li><a href="/calendar">Kalender</a></li>
                     <li><a href="/notes">Notities</a></li>
                     <li><a href="/financials">Financiën</a></li>
                     <li><a href="/planner">Planner</a></li>
                     <li><a href="/birthdays">Verjaardagen</a></li>
                     <li><a href="/contacts">Contactpersonen</a></li>
                     <li><a href="/passwords">Wachtwoorden</a></li>
+                    <li><a href="/shipments">Pakketjes</a></li>
+                    <li><a href="/clothing">Kleding</a></li>
                 </ul>
             </nav>
             <nav class="nav--with-icons" id="nav--bottom-menu">

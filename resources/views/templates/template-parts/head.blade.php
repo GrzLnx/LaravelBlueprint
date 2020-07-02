@@ -22,6 +22,6 @@
     <link href="https://use.typekit.net/ski7rfi.css" rel="stylesheet" type="text/css" media="all">
     <link href="/css/fontawesome.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/css/linearicons.css" rel="stylesheet" type="text/css" media="all" />
-    <script src="/js/app.js" type="text/javascript" defer></script>
+    <script src="/js/functions.js" type="text/javascript" defer></script>
     @yield( 'extra-links' )
 </head>

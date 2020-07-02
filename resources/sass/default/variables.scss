@@ -153,7 +153,7 @@ $space-layout: (
     small:                              10px,
     large:                              40px,
     section:                            25px,
-    object:                             25px
+    object:                             50px
 );
 
 $space-title: (
@@ -195,6 +195,15 @@ $form-label: (
     font-size:                          1.7rem,
     font-weight:                        var( --font-weight--default ),
     margin-bottom:                      10px
+);
+
+$form-status: (
+    background-color:                   map-get( $color-white, second-shade ),
+    color:                              map-get( $color-black, third-shade )
+);
+$form-dark-status: (
+    background-color:                   map-get( $color-black, second-shade ),
+    color:                              map-get( $color-white, third-shade )
 );
 
 $form-outline: (
@@ -357,6 +366,10 @@ html[data-layout] {
 }
 @mixin third-accent-colors() {
     @include light-colors();
+    --color-link--default:              #{ map-get( $color-accent, fourth ) };
+    --color-link--visited:              #{ map-get( $color-accent, fourth ) };
+    --color-link--focus:                #{ map-get( $color-accent, fourth ) };
+    --color-link--active:               #{ map-get( $color-accent, fourth ) };
 }
 @mixin fourth-accent-colors() {
     @include light-colors();
@@ -365,14 +378,14 @@ html[data-layout] {
     @include light-colors();
 }
 
-@media (prefers-color-scheme: dark) {
-    html[data-theme] {
-        @include dark-colors();
-    }
-}
 @media (prefers-color-scheme: light) {
     html[data-theme] {
         @include light-colors();
+    }
+}
+@media (prefers-color-scheme: dark) {
+    html[data-theme] {
+        @include dark-colors();
     }
 }
 
@@ -432,8 +445,8 @@ html[data-spaces] {
     --form-border--color-default:       #{ map-get( $form-dark-border, color-default ) };
     --form-border--color-hover:         #{ map-get( $form-dark-border, color-hover ) };
     --form-border--color-active:        #{ map-get( $form-dark-border, color-active ) };
-    --form-border--color-focus:         #{ map-get( $form-dark-border, color-focus ) };
-    --form-border--color-success:       #{ map-get( $form-dark-border, color-success ) };
+    --form-border--color-focus:         #{ map-get( $form-border, color-focus ) };
+    --form-border--color-success:       #{ map-get( $form-border, color-success ) };
 }
 @mixin light-form-colors() {
     --form-border--color-default:       #{ map-get( $form-border, color-default ) };
@@ -441,6 +454,15 @@ html[data-spaces] {
     --form-border--color-active:        #{ map-get( $form-border, color-active ) };
     --form-border--color-focus:         #{ map-get( $form-border, color-focus ) };
     --form-border--color-success:       #{ map-get( $form-border, color-success ) };
+}
+
+@mixin dark-form-status-colors() {
+    --form-status--background-color:    #{ map-get( $form-dark-status, background-color ) };
+    --form-status--color:               #{ map-get( $form-dark-status, color ) };
+}
+@mixin light-form-status-colors() {
+    --form-status--background-color:    #{ map-get( $form-status, background-color ) };
+    --form-status--color:               #{ map-get( $form-status, color ) };
 }
 
 @mixin first-accent-form-colors {
@@ -462,22 +484,26 @@ html[data-spaces] {
     @include light-form-colors();
 }
 
-@media (prefers-color-scheme: dark) {
-    html[data-theme] {
-        @include dark-form-colors();
-    }
-}
 @media (prefers-color-scheme: light) {
     html[data-theme] {
         @include light-form-colors();
+        @include light-form-status-colors();
+    }
+}
+@media (prefers-color-scheme: dark) {
+    html[data-theme] {
+        @include dark-form-colors();
+        @include dark-form-status-colors();
     }
 }
 
 html[data-form][data-theme="light"] {
     @include light-form-colors();
+    @include light-form-status-colors();
 }
 html[data-form][data-theme="dark"] {
     @include dark-form-colors();
+    @include dark-form-status-colors();
 }
 html[data-form] {
     @include form-colors();
