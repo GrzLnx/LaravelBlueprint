@@ -15215,7 +15215,7 @@ html[data-spaces] {
     --form-border--color-default: var(--color-border--first);
     --form-border--color-hover: var(--color-accent--third);
     --form-border--color-active: var(--color-accent--third);
-    --form-border--color-focus: var(--color-accent--first);
+    --form-border--color-focus: var(--color-accent--third);
     --form-border--color-success: #8CF258;
     --form-status--background-color: #242323;
     --form-status--color: #E4E5E5;
@@ -15236,7 +15236,7 @@ html[data-form][data-theme=dark] {
   --form-border--color-default: var(--color-border--first);
   --form-border--color-hover: var(--color-accent--third);
   --form-border--color-active: var(--color-accent--third);
-  --form-border--color-focus: var(--color-accent--first);
+  --form-border--color-focus: var(--color-accent--third);
   --form-border--color-success: #8CF258;
   --form-status--background-color: #242323;
   --form-status--color: #E4E5E5;
@@ -15519,7 +15519,7 @@ section[data-section-background=color-accent--first] {
   --form-border--color-default: var(--color-border--first);
   --form-border--color-hover: var(--color-accent--third);
   --form-border--color-active: var(--color-accent--third);
-  --form-border--color-focus: var(--color-accent--first);
+  --form-border--color-focus: var(--color-accent--third);
   --form-border--color-success: #8CF258;
 }
 
@@ -16100,6 +16100,7 @@ input[type=checkbox] + label::before {
   min-width: 16px;
   min-height: 16px;
   padding: 4px;
+  line-height: 16px;
   font-family: "LinearIcons", sans-serif;
 }
 
@@ -16771,6 +16772,11 @@ hold-line {
 
 .form-standard__field--hidden {
   margin-bottom: 0;
+}
+
+.form-standard__field--radio .form-standard__status-holder {
+  top: 0;
+  height: 26px;
 }
 
 .form-standard__field--checkbox .form-standard__status-holder {

@@ -445,7 +445,7 @@ html[data-spaces] {
     --form-border--color-default:       #{ map-get( $form-dark-border, color-default ) };
     --form-border--color-hover:         #{ map-get( $form-dark-border, color-hover ) };
     --form-border--color-active:        #{ map-get( $form-dark-border, color-active ) };
-    --form-border--color-focus:         #{ map-get( $form-border, color-focus ) };
+    --form-border--color-focus:         #{ map-get( $form-dark-border, color-focus ) };
     --form-border--color-success:       #{ map-get( $form-border, color-success ) };
 }
 @mixin light-form-colors() {
