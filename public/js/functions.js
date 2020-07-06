@@ -96,6 +96,7 @@ class CheckFormField {
         this.formFieldNotifyText = '';
         this.notificationTextHolder = this.formField.parentElement.querySelector( '.form-standard__status-holder-tooltip' );
         this.fieldValidator = new FormFieldValidator();
+        this.fieldValidator.Form = this.form;
     }
 
     set Form( form ) {
@@ -157,6 +158,9 @@ class FormFieldValidator {
         this.returnBoolean = true;
     }
 
+    set Form( form ) {
+        this.form = form;
+    }
     set Field( field ) {
         this.field = field;
     }
@@ -206,7 +210,21 @@ class FormFieldValidator {
                 this.fieldValidationMessage += '<br />- Dit veld is verplicht.';
                 return false;
             }
-            /* TODO:: Check for radio */
+            /* The required check for a radio type input field. */
+            if( this.field.type === "radio" ) {
+                let fieldStatus = false;
+                for( let radioInput of this.form.elements[ this.field.name ] ) {
+                    console.log( radioInput );
+                    if( radioInput.checked ) {
+                        fieldStatus = true;
+                    }
+                }
+                if( fieldStatus ) {
+                    return true;
+                }
+                this.fieldValidationMessage += '<br />- Dit veld is verplicht.';
+                return false;
+            }
             /* Check for fields with content */
             if( this.field.value.length !== 0 ) {
                 return true;

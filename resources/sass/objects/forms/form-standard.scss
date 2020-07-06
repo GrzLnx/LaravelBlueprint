@@ -35,6 +35,12 @@
 
         }
 
+        &--radio {
+            #{$block}__status-holder {
+                top: 0;
+                height: 26px;
+            }
+        }
         &--checkbox {
             #{$block}__status-holder {
                 top: 0;
