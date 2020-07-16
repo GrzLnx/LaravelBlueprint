@@ -22,8 +22,9 @@
             {{ $logInForm -> addEmailInputField( 'email', '', '', 'email', 'autofocus', old( 'email' ), 'E-mail', 'email', true, __('E-mailadres'), 'required:true;format:email;min-length:8;max-length:40' ) }}
             {{ $logInForm -> addPasswordInputField( 'password', '', '', 'password', '', '', 'Wachtwoord', 'current-password', true, __('Wachtwoord'), 'required:true' ) }}
             {{ $logInForm -> addCheckboxInputField( 'remember', '', '', 'remember', '', '', true, __('Blijf ingelogd'), 'required:true' ) }}
-            {{ $logInForm -> addRadioInputField( 'remembertest1', '', '', 'remembertest', '', 'test1', true, __('Blijf ingelogd'), 'required:true' ) }}
-            {{ $logInForm -> addRadioInputField( 'remembertest2', '', '', 'remembertest', '', 'test2', true, __('Blijf ingelogd'), 'required:true' ) }}
+            {{ $logInForm -> addRadioInputLabel() }}
+            {{ $logInForm -> addRadioInputField( 'remembertest1', 'form-standard__field--no-margin-bottom', '', 'remembertest', '', 'test1', '', true, __('Blijf ingelogd'), 'required:true' ) }}
+            {{ $logInForm -> addRadioInputField( 'remembertest2', '', '', 'remembertest', '', 'test2', '', true, __('Blijf ingelogd'), 'required:true' ) }}
             {{ $logInForm -> addSubmitButton( 'submit', '', '', 'submit', '', __( 'Inloggen' ) ) }}
             {{ $logInForm -> renderForm() }}
 
