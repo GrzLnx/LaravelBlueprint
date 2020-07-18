@@ -214,7 +214,7 @@ class FormBuilder
         $this -> formHTML .= $fieldHTML;
     }
 
-    public function addRadioInputField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $useLabel, $labelText, $javaScriptChecks ) {
+    public function addRadioInputField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $groupLabel, $useLabel, $labelText, $javaScriptChecks ) {
         $fieldHTML  = "";
         $fieldHasError = $this -> checkError( $fieldName );
         if( empty( $fieldHolderClass ) ) {
@@ -236,7 +236,7 @@ class FormBuilder
 
         $this -> formHTML .= $fieldHTML;
     }
-    public function addCheckboxInputField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $useLabel, $labelText, $javaScriptChecks ) {
+    public function addCheckboxInputField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $groupLabel, $useLabel, $labelText, $javaScriptChecks ) {
         $fieldHTML  = "";
         $fieldHasError = $this -> checkError( $fieldName );
         if( empty( $fieldHolderClass ) ) {
