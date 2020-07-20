@@ -16774,6 +16774,11 @@ hold-line {
   margin-bottom: 0;
 }
 
+.form-standard__field--group-label .form-standard__status-holder {
+  top: 0;
+  height: 26px;
+}
+
 .form-standard__field--radio .form-standard__status-holder {
   top: 0;
   height: 26px;

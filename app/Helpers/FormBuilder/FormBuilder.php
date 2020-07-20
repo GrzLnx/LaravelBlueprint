@@ -214,6 +214,39 @@ class FormBuilder
         $this -> formHTML .= $fieldHTML;
     }
 
+    public function addRadioInputLabel( $labelID, $labelHolderClass, $labelGroupName, $useLabel, $labelText, $javaScriptChecks ) {
+        $labelHTML  = "";
+        $labelHasError = $this -> checkError( $labelGroupName );
+        if( empty( $labelHolderClass ) ) {
+            $labelHTML .= "<div class='form-standard__field form-standard__field--group-label' data-field-status='{$labelHasError}'>";
+        } else {
+            $labelHTML .= "<div class='form-standard__field form-standard__field--group-label {$labelHolderClass}' data-field-status='{$labelHasError}'>";
+        }
+        $labelNewID = $this -> getFieldID( $labelID );
+        $labelHTML .= $this -> addLabel( $useLabel, $labelText, $labelNewID, 1, $labelGroupName, $javaScriptChecks );
+
+        $labelErrorMessage = $this -> getErrorMessage( $labelGroupName );
+        $labelHTML .= $this -> getFieldStatusHTML( $labelErrorMessage, $labelNewID );
+
+        $labelHTML .= "</div>";
+
+        $this -> formHTML .= $labelHTML;
+    }
+    public function addCheckboxInputLabel( $labelID, $labelHolderClass, $labelGroupName, $useLabel, $labelText ) {
+        $labelHTML  = "";
+        if( empty( $labelHolderClass ) ) {
+            $labelHTML .= "<div class='form-standard__field form-standard__field--group-label'>";
+        } else {
+            $labelHTML .= "<div class='form-standard__field form-standard__field--group-label {$labelHolderClass}'>";
+        }
+        $labelNewID = $this -> getFieldID( $labelID );
+        $labelHTML .= $this -> addLabel( $useLabel, $labelText, $labelNewID, 1, $labelGroupName );
+
+        $labelHTML .= "</div>";
+
+        $this -> formHTML .= $labelHTML;
+    }
+
     public function addRadioInputField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $groupLabel, $useLabel, $labelText, $javaScriptChecks ) {
         $fieldHTML  = "";
         $fieldHasError = $this -> checkError( $fieldName );
@@ -226,6 +259,9 @@ class FormBuilder
         $fieldClass = $this -> getFieldClasses( $this -> formRadioInputFieldClass, $fieldAdditionalClass );
         $fieldCheck = $this -> checkRadioValue( $fieldValue, $fieldName );
         $fieldHTML .= "<input type='radio' id='" . $fieldNewID . "' class='" . $fieldClass . "' name='" . $fieldName . "' value='" . $fieldValue . "{$fieldCheck}'";
+        if( $groupLabel ) {
+            $fieldHTML .= " data-field-js-group-label='0' data-field-js-group='{$fieldName}' ";
+        }
         $fieldHTML .= $this -> addFieldHTMLAttributes( $fieldHTMLAttributes );
         $fieldHTML .= $this -> addJavaScriptChecks( $javaScriptChecks );
         $fieldHTML .= "/>";
@@ -236,7 +272,7 @@ class FormBuilder
 
         $this -> formHTML .= $fieldHTML;
     }
-    public function addCheckboxInputField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $groupLabel, $useLabel, $labelText, $javaScriptChecks ) {
+    public function addCheckboxInputField( $fieldID, $fieldHolderClass, $fieldAdditionalClass, $fieldName, $fieldHTMLAttributes, $fieldValue, $useLabel, $labelText, $javaScriptChecks ) {
         $fieldHTML  = "";
         $fieldHasError = $this -> checkError( $fieldName );
         if( empty( $fieldHolderClass ) ) {
@@ -354,10 +390,17 @@ class FormBuilder
         echo $this -> formJSString;
     }
 
-    private function addLabel( $useLabel, $labelText, $fieldID ) {
+    private function addLabel( $useLabel, $labelText, $fieldID, $isGroupLabel = 0, $groupLabel = "", $javaScriptChecks = "" ) {
         $labelHTML = "";
-        if( $useLabel ) {
+        if( $useLabel && !$isGroupLabel ) {
             $labelHTML = "<label for='{$fieldID}'>{$labelText}</label>";
+        }
+        if( $useLabel && $isGroupLabel ) {
+            $labelHTML  = "<label for='{$fieldID}' data-field-js-group-label='{$isGroupLabel}' data-field-js-group='{$groupLabel}'";
+            if( strlen( $javaScriptChecks ) !== 0 ) {
+                $labelHTML .= " data-field-js-check='true' data-field-js-checks='{$javaScriptChecks}'";
+            }
+            $labelHTML .= ">{$labelText}</label>";
         }
         return $labelHTML;
     }
