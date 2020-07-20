@@ -104,6 +104,7 @@ input[type=radio] {
         align-items: center;
         font-size: var(--font-size--text);
         cursor: pointer;
+        white-space: pre-wrap;
         text-transform: none;
         &::before {
             content: "";

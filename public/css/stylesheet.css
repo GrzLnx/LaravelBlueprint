@@ -16067,6 +16067,7 @@ input[type=radio] + label {
   align-items: center;
   font-size: var(--font-size--text);
   cursor: pointer;
+  white-space: pre-wrap;
   text-transform: none;
 }
 

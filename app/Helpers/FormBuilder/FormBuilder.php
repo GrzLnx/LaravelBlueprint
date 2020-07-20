@@ -365,8 +365,6 @@ class FormBuilder
         $this -> formHTML .= $fieldHTML;
     }
 
-    // form id submit met js als dat moet, onclick js functie uitvoeren
-
     public function renderForm() {
         $this -> checkFormID();
         $this -> addHiddenInputField( 'form-id', '', 'form-id', '', $this -> formID, 'required:true' );
