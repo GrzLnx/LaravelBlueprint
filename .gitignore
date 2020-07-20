@@ -14,4 +14,5 @@ yarn-error.log
 .idea/workspace.xml
 .idea/LaravelBlueprint.iml
 .idea/php.xml
-package-lock.json
+.idea/workspace.xml
+.idea
