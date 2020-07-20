@@ -35,6 +35,12 @@
 
         }
 
+        &--group-label {
+            #{$block}__status-holder {
+                top: 0;
+                height: 26px;
+            }
+        }
         &--radio {
             #{$block}__status-holder {
                 top: 0;

@@ -55,7 +55,7 @@ class HoldLine extends HTMLElement {
     }
 }
 
-customElements.define('hold-line', HoldLine);
+customElements.define( 'hold-line', HoldLine );
 
 /** -----   -----   -----
  * JavaScript for the forms.
@@ -202,6 +202,20 @@ class FormFieldValidator {
     ValidateRequired() {
         console.log( this.field );
         if( this.fieldCheckValue ) {
+            /* Check for group */
+            if( this.field.hasAttribute( 'data-field-js-group' ) ) {
+                if( this.field.getAttribute( 'data-field-js-group-label' ) === '1' ) {
+                    let fieldName = this.field.getAttribute( 'data-field-js-group' );
+                    let fields = this.form.querySelectorAll( '[data-field-js-group-label="0"][data-field-js-group="' + fieldName + '"]' );
+                    for( let field of fields ) {
+                        if( field.checked ) {
+                            return true;
+                        }
+                    }
+                    this.fieldValidationMessage += '<br />- Dit veld is verplicht.';
+                    return false;
+                }
+            }
             /* Check for checkbox */
             if( this.field.type === "checkbox" ) {
                 if( this.field.checked ) {
@@ -213,7 +227,7 @@ class FormFieldValidator {
             /* The required check for a radio type input field. */
             if( this.field.type === "radio" ) {
                 let fieldStatus = false;
-                for( let radioInput of this.form.elements[ this.field.name ] ) {
+                for( let radioInput of this.form.querySelectorAll( '[name="' + this.field.name + '"]' ) ) {
                     console.log( radioInput );
                     if( radioInput.checked ) {
                         fieldStatus = true;
