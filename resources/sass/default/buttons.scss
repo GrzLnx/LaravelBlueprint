@@ -97,3 +97,23 @@ section[data-section-background="color-accent--fifth"] {
     button, input[type="button"], input[type="submit"] {
     }
 }
+
+.button {
+    @include button();
+}
+
+.button--first-accent {
+    @include button-style( $style: first );
+}
+.button--second-accent {
+    @include button-style( $style: second );
+}
+.button--third-accent {
+    @include button-style( $style: third );
+}
+.button--fourth-accent {
+    @include button-style( $style: fourth );
+}
+.button--fifth-accent {
+    @include button-style( $style: fifth );
+}

@@ -1,47 +1,26 @@
+@inject('requestResetPasswordForm', \App\Helpers\FormBuilder )
 @extends( 'templates.account-page' )
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+@section( 'content' )
+<main>
+    <section class="grid-parent" id="section--reset-password" data-section-background="color-accent--third">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+        <div class="textblock-standard object-max-width--750 grid-child">
+            <h1>{{ __('Nieuw wachtwoord aanvragen') }}</h1>
+            <p><hold-line>Oeps, ben je jouw wachtwoord vergeten? Geen probleem! Hier vraag je zonder problemen een nieuw wachtwoord aan, het enige wat wij daarvoor van jou nodig hebben is het e-mailadres dat je gebruikt om bij ons in te loggen. </hold-line></p>
         </div>
-    </div>
-</div>
+
+        {{ $requestResetPasswordForm -> setFormClasses() }}
+        {{ $requestResetPasswordForm -> setFormUseJavaScriptCheck( true ) }}
+        {{ $requestResetPasswordForm -> setFormID( 'form-request-reset-password' ) }}
+        {{ $requestResetPasswordForm -> setFormAdditionalClasses( 'grid-child' ) }}
+        {{ $requestResetPasswordForm -> setFormFieldIDAddPrefix( true ) }}
+        {{ $requestResetPasswordForm -> setFormAction( route('password.update') ) }}
+        {{ $requestResetPasswordForm -> addCSRFField( csrf_token() ) }}
+        {{ $requestResetPasswordForm -> addEmailInputField( 'email', '', '', 'email', 'autofocus', old( 'email' ), 'E-mail', 'email', true, __('E-mailadres'), 'required:true;format:email;min-length:8;max-length:40' ) }}
+        {{ $requestResetPasswordForm -> addSubmitButton( 'submit', '', '', 'submit', '', __( 'Reset link aanvragen' ) ) }}
+        {{ $requestResetPasswordForm -> renderForm() }}
+
+    </section>
+</main>
 @endsection

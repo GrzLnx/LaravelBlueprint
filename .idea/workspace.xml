@@ -21,7 +21,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -169,6 +171,18 @@
       <recent name="C:\xampp\htdocs\LaravelBlueprint\resources\views" />
     </key>
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
@@ -197,7 +211,7 @@
       <workItem from="1593460594577" duration="24819000" />
       <workItem from="1594061248495" duration="6424000" />
       <workItem from="1595269699949" duration="5209000" />
-      <workItem from="1595279753846" duration="5159000" />
+      <workItem from="1595279753846" duration="8824000" />
     </task>
     <servers />
   </component>
@@ -209,12 +223,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="3614" y="522" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1592855113193">

@@ -15361,6 +15361,74 @@ section[data-section-background=color-accent--first] input[type=submit] {
   color: var(--color--white);
 }
 
+.button {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-family--default);
+  font-size: var(--font-size--text);
+  font-weight: var(--font-weight--default);
+  line-height: calc( 22 / 19 );
+  padding: 20px 40px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: normal;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  margin: auto;
+  background-color: var(--color--white);
+  height: 0;
+  padding-bottom: calc(100% + 50px);
+  width: calc(100% + 50px);
+  transform: scale(0);
+  top: -25px;
+  right: -25px;
+  bottom: -25px;
+  left: -25px;
+  transition: transform 0.1s ease-in-out;
+  opacity: 0.1;
+}
+
+.button:hover::after,
+.button:focus::after,
+.button:active::after {
+  transform: scale(1);
+}
+
+.button--first-accent {
+  background-color: var(--color-accent--first);
+  color: var(--color--white);
+}
+
+.button--second-accent {
+  background-color: var(--color-accent--second);
+  color: var(--color--white);
+}
+
+.button--third-accent {
+  background-color: var(--color-accent--third);
+  color: var(--color--black);
+}
+
+.button--fourth-accent {
+  background-color: var(--color-accent--fourth);
+  color: var(--color--black);
+}
+
+.button--fifth-accent {
+  background-color: var(--color-accent--fifth);
+  color: var(--color--black);
+}
+
 /* Default typo styling */
 
 html {
@@ -15468,7 +15536,7 @@ body {
 }
 
 aside {
-  width: 300px;
+  width: 400px;
 }
 
 main {
