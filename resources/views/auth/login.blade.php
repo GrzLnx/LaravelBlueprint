@@ -21,11 +21,7 @@
             {{ $logInForm -> addCSRFField( csrf_token() ) }}
             {{ $logInForm -> addEmailInputField( 'email', '', '', 'email', 'autofocus', old( 'email' ), 'E-mail', 'email', true, __('E-mailadres'), 'required:true;format:email;min-length:8;max-length:40' ) }}
             {{ $logInForm -> addPasswordInputField( 'password', '', '', 'password', '', '', 'Wachtwoord', 'current-password', true, __('Wachtwoord'), 'required:true' ) }}
-            {{ $logInForm -> addCheckboxInputLabel( 'fieldid', 'form-standard__field--no-margin-bottom', 'fieldname', true, 'Gaat u akkoord?' ) }}
-            {{ $logInForm -> addCheckboxInputField( 'remember', '', '', 'remember', '', '', true, __('Blijf ingelogd'), 'required:true' ) }}
-            {{ $logInForm -> addRadioInputLabel( 'remembertest', 'form-standard__field--no-margin-bottom', 'remembertest', true, 'Test', 'required:true' ) }}
-            {{ $logInForm -> addRadioInputField( 'remembertest1', 'form-standard__field--no-margin-bottom', '', 'remembertest', '', 'test1', true, true, __('Blijf ingelogd'), '' ) }}
-            {{ $logInForm -> addRadioInputField( 'remembertest2', '', '', 'remembertest', '', 'test2', true, true, __('Blijf ingelogd'), '' ) }}
+            {{ $logInForm -> addCheckboxInputField( 'remember', '', '', 'remember', '', '', true, __('Blijf ingelogd'), '' ) }}
             {{ $logInForm -> addSubmitButton( 'submit', '', '', 'submit', '', __( 'Klik hier om in te loggen' ) ) }}
             {{ $logInForm -> renderForm() }}
 
