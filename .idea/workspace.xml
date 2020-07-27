@@ -12,6 +12,7 @@
       <change beforePath="$PROJECT_DIR$/resources/sass/objects/forms/form-standard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/objects/forms/form-standard.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -209,11 +210,12 @@
       <workItem from="1593460594577" duration="24819000" />
       <workItem from="1594061248495" duration="6424000" />
       <workItem from="1595269699949" duration="5209000" />
+      <workItem from="1595279753846" duration="5159000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

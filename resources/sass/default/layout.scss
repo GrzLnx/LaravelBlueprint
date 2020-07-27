@@ -1,3 +1,19 @@
+html {
+    background-color: var( --color-background--default );
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+aside {
+    width: 300px;
+}
+main {
+    flex-grow: 1;
+}
+
 section {
     --section--background-color: var( --color-background--default );
     padding: 75px 50px 25px;

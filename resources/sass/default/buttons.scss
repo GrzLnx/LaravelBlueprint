@@ -67,6 +67,10 @@
 
 }
 
+@mixin button-icon( $position, $icon ) {
+
+}
+
 button, input[type="button"], input[type="submit"] {
     @include button();
     @include button-style( $style: first );

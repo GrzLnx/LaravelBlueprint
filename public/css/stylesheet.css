@@ -15292,10 +15292,10 @@ TODO:: forms = bezig
 TODO:: form class maken = bezig
 TODO:: objects etc
 TODO:: website layout -> grid etc = bezig
-TODO:: buttons
-TODO:: background colors
-TODO:: standaard paginas netjes instellen
-TODO:: tekstblok maken / instellen / stylen
+TODO:: buttons= done
+TODO:: background colors = done
+TODO:: standaard paginas netjes instellen = bezig
+TODO:: tekstblok maken / instellen / stylen = hierna
 */
 
 button,
@@ -15368,8 +15368,6 @@ html {
   font-weight: var(--font-weight--default);
   line-height: var(--font-line-height--default);
   color: var(--color-text--default);
-  background-color: var(--color-background--default);
-  /* TODO:: verplaatsen naar juiste plek. ( layout? )*/
 }
 
 body {
@@ -15457,6 +15455,23 @@ a:not(.button):focus {
 
 a:not(.button):active {
   color: var(--color-link--active);
+}
+
+html {
+  background-color: var(--color-background--default);
+}
+
+body {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+aside {
+  width: 300px;
+}
+
+main {
+  flex-grow: 1;
 }
 
 section {
