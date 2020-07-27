@@ -14960,6 +14960,7 @@ video {
   padding: 0;
   border: 0;
   vertical-align: baseline;
+  box-sizing: border-box;
 }
 
 article,
@@ -15728,6 +15729,7 @@ section[data-section-background=color-accent--fifth] {
 
 .grid-child {
   display: inline-grid;
+  width: 100%;
   margin-bottom: 50px;
   padding: 0 25px;
   grid-column: span 12;
@@ -15935,7 +15937,7 @@ select,
 textarea {
   margin-bottom: 10px;
   padding: 20px;
-  min-width: 650px;
+  width: 100%;
   line-height: 20px;
   color: var(--color-text--default);
   font-weight: var(--font-weight--default);
@@ -16765,6 +16767,7 @@ hold-line {
 
 .form-standard__field {
   position: relative;
+  max-width: 650px;
   margin-bottom: 15px;
 }
 

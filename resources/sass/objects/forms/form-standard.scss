@@ -4,6 +4,7 @@
 
     &__field {
         position: relative;
+        max-width: 650px;
         margin-bottom: 15px;
 
         &[data-field-status="success"] {

@@ -8,8 +8,8 @@
             <div class="textblock-standard object-max-width--650 grid-child">
                 <h1>{{ __('Inloggen') }}</h1>
                 <p><hold-line>Voer onderstaand je gegevens in om in te loggen. </hold-line>
-                   <hold-line class="textblock-standard__hold-line">Heb je nog geen account? Maak dan een <a href="{{ route( 'register' ) }}">nieuw account</a> aan. </hold-line>
-                   <hold-line class="textblock-standard__hold-line">Ben je jouw wachtwoord vergeten? Vraag dan een <a href="{{ route( 'password.request' ) }}">nieuw wachtwoord</a> aan. </hold-line></p>
+                   <hold-line>Heb je nog geen account? Maak dan een <a href="{{ route( 'register' ) }}">nieuw account</a> aan. </hold-line>
+                   <hold-line>Ben je jouw wachtwoord vergeten? Vraag dan een <a href="{{ route( 'password.request' ) }}">nieuw wachtwoord</a> aan. </hold-line></p>
             </div>
 
             {{ $logInForm -> setFormClasses() }}
