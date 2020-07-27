@@ -26,7 +26,7 @@
             {{ $logInForm -> addRadioInputLabel( 'remembertest', 'form-standard__field--no-margin-bottom', 'remembertest', true, 'Test', 'required:true' ) }}
             {{ $logInForm -> addRadioInputField( 'remembertest1', 'form-standard__field--no-margin-bottom', '', 'remembertest', '', 'test1', true, true, __('Blijf ingelogd'), '' ) }}
             {{ $logInForm -> addRadioInputField( 'remembertest2', '', '', 'remembertest', '', 'test2', true, true, __('Blijf ingelogd'), '' ) }}
-            {{ $logInForm -> addSubmitButton( 'submit', '', '', 'submit', '', __( 'Inloggen' ) ) }}
+            {{ $logInForm -> addSubmitButton( 'submit', '', '', 'submit', '', __( 'Klik hier om in te loggen' ) ) }}
             {{ $logInForm -> renderForm() }}
 
         </section>
