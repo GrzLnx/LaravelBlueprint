@@ -5,7 +5,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/LaravelBlueprint.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LaravelBlueprint.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/stylesheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/default/form.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/default/form.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/default/layout.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/default/layout.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/default/reset.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/default/reset.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/objects/forms/form-standard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/objects/forms/form-standard.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,9 +20,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -164,18 +168,6 @@
       <recent name="C:\xampp\htdocs\LaravelBlueprint\resources\views" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
@@ -215,13 +207,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="3614" y="522" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1592855113193">
