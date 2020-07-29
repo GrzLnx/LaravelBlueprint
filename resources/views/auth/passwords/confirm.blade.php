@@ -1,49 +1,27 @@
+@inject('confirmPasswordForm', \App\Helpers\FormBuilder )
 @extends( 'templates.account-page' )
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Confirm Password') }}</div>
+@section( 'content' )
+    <main>
+        <section class="grid-parent" id="section--confirm-password" data-section-background="color-accent--third">
 
-                <div class="card-body">
-                    {{ __('Please confirm your password before continuing.') }}
-
-                    <form method="POST" action="{{ route('password.confirm') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Confirm Password') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <div class="textblock-standard object-max-width--700 grid-child">
+                <h1>{{ __('Wachtwoord controle') }}</h1>
+                <p><hold-line>Bevestig jouw wachtwoord. Ben je jouw wachtwoord vergeten? </hold-line>
+                   <hold-line>Vraag dan een <a href="{{ route( 'password.request' ) }}">nieuw wachtwoord</a> aan.</hold-line></p>
             </div>
-        </div>
-    </div>
-</div>
+
+            {{ $confirmPasswordForm -> setFormClasses() }}
+            {{ $confirmPasswordForm -> setFormUseJavaScriptCheck( true ) }}
+            {{ $confirmPasswordForm -> setFormID( 'form-confirm-password' ) }}
+            {{ $confirmPasswordForm -> setFormAdditionalClasses( 'grid-child' ) }}
+            {{ $confirmPasswordForm -> setFormFieldIDAddPrefix( true ) }}
+            {{ $confirmPasswordForm -> setFormAction( route('password.confirm') ) }}
+            {{ $confirmPasswordForm -> addCSRFField( csrf_token() ) }}
+            {{ $confirmPasswordForm -> addPasswordInputField( 'password', '', '', 'password', '', '', 'Wachtwoord', 'current-password', true, __('Wachtwoord'), 'required:true' ) }}
+            {{ $confirmPasswordForm -> addSubmitButton( 'submit', '', '', 'submit', '', __( 'Wijzig je wachtwoord' ) ) }}
+            {{ $confirmPasswordForm -> renderForm() }}
+
+        </section>
+    </main>
 @endsection

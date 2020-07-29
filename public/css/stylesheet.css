@@ -15276,12 +15276,12 @@ html[data-font] {
   --font-line-height--default: 1.4;
   --font-line-height--text: 1.4;
   --font-line-height--p: 1.4;
-  --font-line-height--h1: 1.4;
-  --font-line-height--h2: 1.4;
-  --font-line-height--h3: 1.4;
-  --font-line-height--h4: 1.4;
-  --font-line-height--h5: 1.4;
-  --font-line-height--h6: 1.4;
+  --font-line-height--h1: 1.1;
+  --font-line-height--h2: 1.1;
+  --font-line-height--h3: 1.1;
+  --font-line-height--h4: 1.2;
+  --font-line-height--h5: 1.2;
+  --font-line-height--h6: 1.3;
   --font-weight--default: 400;
   --font-weight--light: 300;
   --font-weight--regular: 400;

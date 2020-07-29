@@ -1,28 +1,29 @@
+@inject('requestNewVertificationEmail', \App\Helpers\FormBuilder )
 @extends( 'templates.account-page' )
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+@section( 'content' )
+    <main>
+        <section class="grid-parent" id="section--login" data-section-background="color-accent--third">
 
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
-                    @endif
-
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
-                    </form>
-                </div>
+            <div class="textblock-standard object-max-width--650 grid-child">
+                <h1>{{ __('Bevestig jouw e-mailadres') }}</h1>
+                @if( session( 'resent' ) )
+                    <p><hold-line>Een bevestigingslink is succesvol verstuurd naar jouw e-mailadres!</hold-line></p>
+                @endif
+                <p><hold-line>Geen bevestigingslink ontvangen, of werkte de link niet? Vraag dan een nieuwe bevestigingslink aan. </hold-line>
+                   <hold-line>PS: al in de spam folder gekeken?</hold-line></p>
             </div>
-        </div>
-    </div>
-</div>
+
+            {{ $requestNewVertificationEmail -> setFormClasses() }}
+            {{ $requestNewVertificationEmail -> setFormUseJavaScriptCheck( true ) }}
+            {{ $requestNewVertificationEmail -> setFormID( 'form-request-vertification-email' ) }}
+            {{ $requestNewVertificationEmail -> setFormAdditionalClasses( 'grid-child' ) }}
+            {{ $requestNewVertificationEmail -> setFormFieldIDAddPrefix( true ) }}
+            {{ $requestNewVertificationEmail -> setFormAction( route( 'verification.resend' ) ) }}
+            {{ $requestNewVertificationEmail -> addCSRFField( csrf_token() ) }}
+            {{ $requestNewVertificationEmail -> addSubmitButton( 'submit', '', '', 'submit', '', __( 'Vraag een nieuwe bevestigingslink aan' ) ) }}
+            {{ $requestNewVertificationEmail -> renderForm() }}
+
+        </section>
+    </main>
 @endsection
