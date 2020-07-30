@@ -1,5 +1,5 @@
 <aside>
-    <section class="grid-parent" id="section--sidebar">
+    <section class="section--full-height grid-parent" id="section--sidebar">
         <div class="textblock-standard grid-child">
             <button id="theme-button">Wijzig thema</button>
         </div>

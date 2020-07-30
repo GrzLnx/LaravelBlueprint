@@ -5,6 +5,7 @@ html {
 body {
     display: flex;
     flex-wrap: wrap;
+    min-height: var( --js--screen-height );
 }
 
 aside {
@@ -16,7 +17,7 @@ main {
 
 section {
     --section--background-color: var( --color-background--default );
-    padding: 75px 50px 25px;
+    padding: 75px 50px 45px;
 }
 
 section[data-section-background] {
@@ -50,17 +51,22 @@ section[data-section-background="color-accent--fifth"] {
     @include fifth-accent-form-colors();
 }
 
+.section--full-height {
+    height: 100%;
+}
+
 .grid-parent {
     display: grid;
     grid-template-columns: repeat( 12, 1fr );
     align-items: start;
     justify-items: start;
+    align-content: start;
 }
 
 .grid-child {
     display: inline-grid;
     width: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 35px;
     padding: 0 25px;
     grid-column: span 12;
     grid-row: span 1;
@@ -117,4 +123,8 @@ section[data-section-background="color-accent--fifth"] {
         &--m-10 { grid-column: span 10; }
         &--m-11 { grid-column: span 11; }
     }
+}
+
+#section--sidebar {
+    align-content: unset;
 }

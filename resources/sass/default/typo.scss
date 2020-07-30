@@ -58,7 +58,116 @@ h6 {
 /* Styling for the paragraphs */
 
 p {
+    margin-bottom: var( --space-text--p );
     font-size: var( --font-size--p );
+    line-height: var( --font-line-height--p );
+}
+
+/* Styling for the unordered & ordered lists */
+
+ul, ol {
+
+    li {
+
+    }
+}
+
+ul {
+
+    li {
+
+    }
+}
+
+ol {
+    li {
+
+    }
+}
+
+li {
+
+}
+
+.list--bullets {
+    li {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 5px 0;
+        &::before {
+            content: "";
+            display: inline-block;
+            height: 7px;
+            width: 7px;
+            margin-right: 7px;
+            background-color: currentColor;
+            border-radius: 50%;
+        }
+    }
+}
+.list--check-marks {
+    li {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 5px 0;
+        &::before {
+            content: "\E934";
+            display: inline-block;
+            margin-right: 7px;
+            font-family: "LinearIcons", sans-serif;
+            font-size: 16px;
+        }
+    }
+}
+.list--cross-marks {
+    li {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 5px 0;
+        &::before {
+            content: "\E935";
+            display: inline-block;
+            margin-right: 7px;
+            font-family: "LinearIcons", sans-serif;
+            font-size: 16px;
+        }
+    }
+}
+.list--numbers {
+    ul {
+        list-style-type: decimal;
+        list-style-position: inside;
+    }
+    li {
+        margin: 5px 0;
+    }
+}
+.list--roman-numbers {
+    ul {
+        list-style-type: upper-roman;
+        list-style-position: inside;
+    }
+    li {
+        margin: 5px 0;
+    }
+}
+.list--arrows {
+    li {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 5px 0;
+        &::before {
+            content: "\E944";
+            display: inline-block;
+            margin-right: 7px;
+            font-family: "LinearIcons", sans-serif;
+            font-size: 16px;
+        }
+    }
 }
 
 /* Styling for the links */

@@ -3,7 +3,7 @@
 
 @section( 'content' )
 <main>
-    <section class="grid-parent" id="section--reset-password" data-section-background="color-accent--third">
+    <section class="section--full-height grid-parent" id="section--reset-password" data-section-background="color-accent--third">
 
         <div class="textblock-standard object-max-width--700 grid-child">
             <h1>{{ __('Nieuw wachtwoord aanmaken') }}</h1>

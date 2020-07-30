@@ -1,6 +1,10 @@
 .textblock-standard {
     margin-bottom: 35px;
 
+    ul, ol {
+        margin-bottom: 10px;
+    }
+
     *:last-child {
         margin-bottom: 0;
     }

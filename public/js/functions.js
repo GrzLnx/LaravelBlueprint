@@ -81,8 +81,8 @@ function checkForm( form ) {
 function setFormLabelHeightVar( form ) {
     const labelElements = form.querySelectorAll( 'label:not(.form-standard__status-holder)' );
     for( let labelElement of labelElements ) {
-        if( labelElement.offsetHeight !== 23 ) {
-            labelElement.parentElement.style.setProperty( '--form-field--label-height', labelElement.offsetHeight );
+        if( labelElement.offsetHeight !== 25 ) {
+            labelElement.parentElement.style.setProperty( '--form-field--label-height', labelElement.offsetHeight + 'px' );
         }
     }
 }

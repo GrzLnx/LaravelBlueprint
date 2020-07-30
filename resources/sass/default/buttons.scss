@@ -41,6 +41,15 @@
         }
     }
 
+    & + & {
+        @include screen-size( "desktop", "min", false ) {
+            margin-left: 25px;
+        }
+        @include screen-size( "tablet", "max", false ) {
+            margin-top: 25px;
+        }
+    }
+
 }
 @mixin button-style( $style: first ) {
 
@@ -95,6 +104,12 @@ section[data-section-background="color-accent--fourth"] {
 }
 section[data-section-background="color-accent--fifth"] {
     button, input[type="button"], input[type="submit"] {
+    }
+}
+
+p + p > {
+    .button, button, input[type="button"], input[type="submit"] {
+        margin-top: 15px;
     }
 }
 

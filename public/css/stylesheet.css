@@ -15273,9 +15273,9 @@ html[data-font] {
   --font-size--h4: 2.4rem;
   --font-size--h5: 2rem;
   --font-size--h6: 1.9rem;
-  --font-line-height--default: 1.4;
-  --font-line-height--text: 1.4;
-  --font-line-height--p: 1.4;
+  --font-line-height--default: 1.5;
+  --font-line-height--text: 1.5;
+  --font-line-height--p: 1.5;
   --font-line-height--h1: 1.1;
   --font-line-height--h2: 1.1;
   --font-line-height--h3: 1.1;
@@ -15295,7 +15295,7 @@ TODO:: objects etc
 TODO:: website layout -> grid etc = bezig
 TODO:: buttons= done
 TODO:: background colors = done
-TODO:: standaard paginas netjes instellen = bezig
+TODO:: standaard paginas netjes instellen = done!
 TODO:: tekstblok maken / instellen / stylen = hierna
 */
 
@@ -15354,11 +15354,46 @@ input[type=submit]:active::after {
   transform: scale(1);
 }
 
+@media (min-width: 1024px) {
+  button + button,
+  button + input[type=button],
+  button + input[type=submit],
+  input[type=button] + button,
+  input[type=button] + input[type=button],
+  input[type=button] + input[type=submit],
+  input[type=submit] + button,
+  input[type=submit] + input[type=button],
+  input[type=submit] + input[type=submit] {
+    margin-left: 25px;
+  }
+}
+
+@media (max-width: 1023px) {
+  button + button,
+  button + input[type=button],
+  button + input[type=submit],
+  input[type=button] + button,
+  input[type=button] + input[type=button],
+  input[type=button] + input[type=submit],
+  input[type=submit] + button,
+  input[type=submit] + input[type=button],
+  input[type=submit] + input[type=submit] {
+    margin-top: 25px;
+  }
+}
+
 section[data-section-background=color-accent--first] button,
 section[data-section-background=color-accent--first] input[type=button],
 section[data-section-background=color-accent--first] input[type=submit] {
   background-color: var(--color-accent--second);
   color: var(--color--white);
+}
+
+p + p > .button,
+p + p > button,
+p + p > input[type=button],
+p + p > input[type=submit] {
+  margin-top: 15px;
 }
 
 .button {
@@ -15402,6 +15437,18 @@ section[data-section-background=color-accent--first] input[type=submit] {
 .button:focus::after,
 .button:active::after {
   transform: scale(1);
+}
+
+@media (min-width: 1024px) {
+  .button + .button {
+    margin-left: 25px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .button + .button {
+    margin-top: 25px;
+  }
 }
 
 .button--first-accent {
@@ -15499,7 +15546,91 @@ h6 {
 /* Styling for the paragraphs */
 
 p {
+  margin-bottom: var(--space-text--p);
   font-size: var(--font-size--p);
+  line-height: var(--font-line-height--p);
+}
+
+/* Styling for the unordered & ordered lists */
+
+.list--bullets li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 5px 0;
+}
+
+.list--bullets li::before {
+  content: "";
+  display: inline-block;
+  height: 7px;
+  width: 7px;
+  margin-right: 7px;
+  background-color: currentColor;
+  border-radius: 50%;
+}
+
+.list--check-marks li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 5px 0;
+}
+
+.list--check-marks li::before {
+  content: "\E934";
+  display: inline-block;
+  margin-right: 7px;
+  font-family: "LinearIcons", sans-serif;
+  font-size: 16px;
+}
+
+.list--cross-marks li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 5px 0;
+}
+
+.list--cross-marks li::before {
+  content: "\E935";
+  display: inline-block;
+  margin-right: 7px;
+  font-family: "LinearIcons", sans-serif;
+  font-size: 16px;
+}
+
+.list--numbers ul {
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+
+.list--numbers li {
+  margin: 5px 0;
+}
+
+.list--roman-numbers ul {
+  list-style-type: upper-roman;
+  list-style-position: inside;
+}
+
+.list--roman-numbers li {
+  margin: 5px 0;
+}
+
+.list--arrows li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 5px 0;
+}
+
+.list--arrows li::before {
+  content: "\E944";
+  display: inline-block;
+  margin-right: 7px;
+  font-family: "LinearIcons", sans-serif;
+  font-size: 16px;
 }
 
 /* Styling for the links */
@@ -15533,6 +15664,7 @@ html {
 body {
   display: flex;
   flex-wrap: wrap;
+  min-height: var(--js--screen-height);
 }
 
 aside {
@@ -15545,7 +15677,7 @@ main {
 
 section {
   --section--background-color: var( --color-background--default );
-  padding: 75px 50px 25px;
+  padding: 75px 50px 45px;
 }
 
 section[data-section-background] {
@@ -15788,17 +15920,22 @@ section[data-section-background=color-accent--fifth] {
   --form-border--color-success: #8CF258;
 }
 
+.section--full-height {
+  height: 100%;
+}
+
 .grid-parent {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   align-items: start;
   justify-items: start;
+  align-content: start;
 }
 
 .grid-child {
   display: inline-grid;
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 35px;
   padding: 0 25px;
   grid-column: span 12;
   grid-row: span 1;
@@ -15992,6 +16129,10 @@ section[data-section-background=color-accent--fifth] {
   .grid-child--m-11 {
     grid-column: span 11;
   }
+}
+
+#section--sidebar {
+  align-content: unset;
 }
 
 input[type=email],
@@ -16846,12 +16987,21 @@ hold-line {
   margin-bottom: 35px;
 }
 
+.textblock-standard ul,
+.textblock-standard ol {
+  margin-bottom: 10px;
+}
+
 .textblock-standard *:last-child {
   margin-bottom: 0;
 }
 
+#nav--bottom-menu {
+  align-self: self-end;
+}
+
 .form-standard {
-  --form-field--label-height: 23px;
+  --form-field--label-height: 25px;
 }
 
 .form-standard__field {
