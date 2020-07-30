@@ -15668,10 +15668,14 @@ body {
 }
 
 aside {
+  position: fixed;
+  top: 0;
+  bottom: 0;
   width: 400px;
 }
 
 main {
+  margin-left: 400px;
   flex-grow: 1;
 }
 
