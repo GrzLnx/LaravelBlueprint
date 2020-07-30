@@ -15600,7 +15600,7 @@ p {
   font-size: 16px;
 }
 
-.list--numbers ul {
+.list--numbers {
   list-style-type: decimal;
   list-style-position: inside;
 }
@@ -15609,7 +15609,7 @@ p {
   margin: 5px 0;
 }
 
-.list--roman-numbers ul {
+.list--roman-numbers {
   list-style-type: upper-roman;
   list-style-position: inside;
 }

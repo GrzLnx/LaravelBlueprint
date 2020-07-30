@@ -137,19 +137,15 @@ li {
     }
 }
 .list--numbers {
-    ul {
-        list-style-type: decimal;
-        list-style-position: inside;
-    }
+    list-style-type: decimal;
+    list-style-position: inside;
     li {
         margin: 5px 0;
     }
 }
 .list--roman-numbers {
-    ul {
-        list-style-type: upper-roman;
-        list-style-position: inside;
-    }
+    list-style-type: upper-roman;
+    list-style-position: inside;
     li {
         margin: 5px 0;
     }
