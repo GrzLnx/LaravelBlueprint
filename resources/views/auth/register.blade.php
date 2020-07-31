@@ -3,7 +3,7 @@
 
 @section('content')
     <main>
-        <section class="grid-parent" id="section--register">
+        <section class="section--full-height grid-parent" id="section--register" data-section-background="color-accent--fourth">
 
             <div class="textblock-standard object-max-width--650 grid-child">
                 <h1>{{ __('Maak uw eigen account') }}</h1>
@@ -26,8 +26,6 @@
             {{ $registerForm -> addPasswordInputField( 'password_confirmation', '', '', 'password_confirmation', '', '', 'Bevestig wachtwoord', 'new-password', true, __('Bevestig wachtwoord'), 'required:true;min-length:6;password-confirm:password' ) }}
             {{ $registerForm -> addCheckboxInputField( 'agree_to_the_terms', '', '', 'terms', '', old( 'terms' ), true, 'Ja, ik ga akkoord met <a>de voorwaarden</a>.', 'required:true' ) }}
             {{ $registerForm -> addSubmitButton( 'submit', '', '', 'submit', '', __( 'Klik hier om je account aan te maken' ) ) }}
-            {{-- TODO:: add button functie maken in formbuilder --}}
-            {{-- TODO:: check maken voor dubbel wachtwoord --}}
             {{ $registerForm -> renderForm() }}
 
         </section>

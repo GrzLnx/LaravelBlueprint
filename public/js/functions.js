@@ -194,6 +194,8 @@ class FormFieldValidator {
                 return this.ValidateMinLength();
             case 'max-length':
                 return this.ValidateMaxLength();
+            case 'password-confirm':
+                return this.ValidatePasswordConfirm();
             default:
                 return true;
         }
@@ -286,6 +288,17 @@ class FormFieldValidator {
             return true;
         }
         this.fieldValidationMessage += '<br />- Dit veld mag maximaal ' + this.fieldCheckValue + ' tekens bevatten.';
+        return false;
+    }
+
+    ValidatePasswordConfirm() {
+        const compareField = this.form.elements[ this.fieldCheckValue ];
+        const compareFieldPlaceholder = compareField.placeholder;
+        const compareFieldValue = compareField.value;
+        if( this.fieldValue === compareFieldValue ) {
+            return true;
+        }
+        this.fieldValidationMessage += '<br />- Dit veld moet gelijk zijn aan het veld ' + compareFieldPlaceholder + '.';
         return false;
     }
 
