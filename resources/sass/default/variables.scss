@@ -7,7 +7,8 @@ $layout: (
     tablet-size-max:                    1023px,
     tablet-size-min:                    768px,
     mobile-size-max:                    767px,
-    mobile-size-min:                    320px
+    small-mobile-size-max:              767px,
+    website-width-min:                  320px
 );
 
 /* Variables for the colors */
@@ -224,7 +225,7 @@ $font-family: (
 );
 
 $font-size: (
-    default:                            10px,
+    default:                            62.5%,
     text:                               1.9rem,
     p:                                  1.9rem,
     h1:                                 4.8rem,
@@ -544,10 +545,11 @@ html[data-font] {
 /*
 TODO:: forms = bezig
 TODO:: form class maken = bezig
-TODO:: objects etc
+TODO:: objects etc = bezig
 TODO:: website layout -> grid etc = bezig
 TODO:: buttons= done
 TODO:: background colors = done
 TODO:: standaard paginas netjes instellen = done!
 TODO:: tekstblok maken / instellen / stylen = bezig
+TODO:: responsive meenemen in alles! = bezig
 */

@@ -19,13 +19,11 @@
             {{ $registerForm -> setFormFieldIDAddPrefix( true ) }}
             {{ $registerForm -> setFormAction( route( 'register' ) ) }}
             {{ $registerForm -> addCSRFField( csrf_token() ) }}
-            {{ $registerForm -> addTextInputField( 'name', '', '', 'name', 'autofocus', old( 'name' ), 'Naam', 'name', true, __('Naam'), 'required:true' ) }}
-            {{ $registerForm -> addTextInputField( 'username', '', '', 'username', '', old( 'username' ), 'Gebruikersnaam', 'username', true, __('Gebruikersnaam'), 'required:true' ) }}
+            {{ $registerForm -> addTextInputField( 'name', '', '', 'name', 'autofocus', old( 'name' ), __('Voornaam'), 'name', true, __('Voornaam'), 'required:true' ) }}
             {{ $registerForm -> addEmailInputField( 'email', '', '', 'email', '', old( 'email' ), 'E-mail', 'email', true, __('E-mailadres'), 'required:true;format:email' ) }}
             {{ $registerForm -> addPasswordInputField( 'password', '', '', 'password', '', '', 'Wachtwoord', 'new-password', true, __('Wachtwoord'), 'required:true;min-length:6' ) }}
-            {{ $registerForm -> addPasswordInputField( 'password_confirmation', '', '', 'password_confirmation', '', '', 'Bevestig wachtwoord', 'new-password', true, __('Bevestig wachtwoord'), 'required:true;min-length:6;password-confirm:password' ) }}
             {{ $registerForm -> addCheckboxInputField( 'agree_to_the_terms', '', '', 'terms', '', old( 'terms' ), true, 'Ja, ik ga akkoord met <a>de voorwaarden</a>.', 'required:true' ) }}
-            {{ $registerForm -> addSubmitButton( 'submit', '', '', 'submit', '', __( 'Klik hier om je account aan te maken' ) ) }}
+            {{ $registerForm -> addSubmitButton( 'submit', '', '', 'submit', '', __( 'Maak een account' ) ) }}
             {{ $registerForm -> renderForm() }}
 
         </section>

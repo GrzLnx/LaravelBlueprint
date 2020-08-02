@@ -1,8 +1,13 @@
 @mixin screen-size( $size, $type: "", $only: true ) {
     @if( $only ) {
 
+        @if( $size == "small-mobile" ) {
+            @media( min-width: #{ map-get( $layout, website-width-min ) } ) and ( max-width: #{ map-get( $layout, small-mobile-size-max ) } ) {
+                @content;
+            }
+        }
         @if( $size == "mobile" ) {
-            @media( min-width: #{ map-get( $layout, mobile-size-min ) } ) and ( max-width: #{ map-get( $layout, mobile-size-max ) } ) {
+            @media( min-width: #{ map-get( $layout, website-width-min ) } ) and ( max-width: #{ map-get( $layout, mobile-size-max ) } ) {
                 @content;
             }
         }
@@ -40,6 +45,11 @@
         }
         @if( $type == "max" ) {
 
+            @if( $size == "small-mobile" ) {
+                @media( max-width: #{ map-get( $layout, small-mobile-size-max ) } ) {
+                    @content;
+                }
+            }
             @if( $size == "mobile" ) {
                 @media( max-width: #{ map-get( $layout, mobile-size-max ) } ) {
                     @content;

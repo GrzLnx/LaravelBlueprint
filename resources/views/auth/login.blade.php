@@ -8,7 +8,7 @@
             <div class="textblock-standard object-max-width--650 grid-child">
                 <h1>{{ __('Inloggen') }}</h1>
                 <p>
-                    <hold-line>Voer onderstaand je gegevens in om in te loggen. </hold-line>
+                    <hold-line>Voer onderstaand <strong>je gegevens</strong> in om in te loggen. </hold-line>
                     <hold-line>Heb je nog geen account? Maak dan een <a href="{{ route( 'register' ) }}">nieuw account</a> aan. </hold-line>
                 </p>
                 <p>
@@ -26,7 +26,7 @@
             {{ $logInForm -> addEmailInputField( 'email', '', '', 'email', 'autofocus', old( 'email' ), 'E-mail', 'email', true, __('E-mailadres'), 'required:true;format:email;min-length:8;max-length:40' ) }}
             {{ $logInForm -> addPasswordInputField( 'password', '', '', 'password', '', '', 'Wachtwoord', 'current-password', true, __('Wachtwoord'), 'required:true' ) }}
             {{ $logInForm -> addCheckboxInputField( 'remember', '', '', 'remember', '', '', true, __('Blijf ingelogd'), '' ) }}
-            {{ $logInForm -> addSubmitButton( 'submit', '', '', 'submit', '', __( 'Klik hier om in te loggen' ) ) }}
+            {{ $logInForm -> addSubmitButton( 'submit', '', '', 'submit', '', __( 'Log in' ) ) }}
             {{ $logInForm -> renderForm() }}
 
         </section>

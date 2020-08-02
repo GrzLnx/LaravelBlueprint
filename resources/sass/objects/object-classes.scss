@@ -26,3 +26,40 @@ $margin-values: 5, 10, 15, 20, 25, 30, 35, 40, 45, 50,
         margin-left: #{ $margin-value }px;
     }
 }
+
+.object-background-color {
+    width: calc( 100% - 50px );
+    margin-right: 25px;
+    margin-left: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    color: var(--color-text--default);
+    background-color: var( --object--background-color );
+    @include form-colors();
+}
+
+.object-background-color--first-accent {
+    --object--background-color: var( --color-background--first-accent );
+    @include first-accent-colors();
+    @include first-accent-form-colors();
+}
+.object-background-color--second-accent {
+    --object--background-color: var( --color-background--second-accent );
+    @include second-accent-colors();
+    @include second-accent-form-colors();
+}
+.object-background-color--third-accent {
+    --object--background-color: var( --color-background--third-accent );
+    @include third-accent-colors();
+    @include third-accent-form-colors();
+}
+.object-background-color--fourth-accent {
+    --object--background-color: var( --color-background--fourth-accent );
+    @include fourth-accent-colors();
+    @include fourth-accent-form-colors();
+}
+.object-background-color--fifth-accent {
+    --object--background-color: var( --color-background--fifth-accent );
+    @include fifth-accent-colors();
+    @include fifth-accent-form-colors();
+}

@@ -15264,7 +15264,7 @@ html[data-font] {
   --font-family--title: "nimbus-sans", sans-serif;
   --font-family--text: "nimbus-sans", sans-serif;
   --font-family--default: "nimbus-sans", sans-serif;
-  --font-size--default: 10px;
+  --font-size--default: 62.5%;
   --font-size--text: 1.9rem;
   --font-size--p: 1.9rem;
   --font-size--h1: 4.8rem;
@@ -15291,26 +15291,27 @@ html[data-font] {
 /*
 TODO:: forms = bezig
 TODO:: form class maken = bezig
-TODO:: objects etc
+TODO:: objects etc = bezig
 TODO:: website layout -> grid etc = bezig
 TODO:: buttons= done
 TODO:: background colors = done
 TODO:: standaard paginas netjes instellen = done!
-TODO:: tekstblok maken / instellen / stylen = hierna
+TODO:: tekstblok maken / instellen / stylen = bezig
+TODO:: responsive meenemen in alles! = bezig
 */
 
 button,
 input[type=button],
 input[type=submit] {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
   font-family: var(--font-family--default);
   font-size: var(--font-size--text);
   font-weight: var(--font-weight--default);
   line-height: calc( 22 / 19 );
   padding: 20px 40px;
   border: none;
-  text-align: center;
+  justify-content: center;
   text-decoration: none;
   cursor: pointer;
   white-space: normal;
@@ -15354,6 +15355,14 @@ input[type=submit]:active::after {
   transform: scale(1);
 }
 
+@media (max-width: 1023px) {
+  button,
+  input[type=button],
+  input[type=submit] {
+    width: 100%;
+  }
+}
+
 @media (min-width: 1024px) {
   button + button,
   button + input[type=button],
@@ -15378,7 +15387,7 @@ input[type=submit]:active::after {
   input[type=submit] + button,
   input[type=submit] + input[type=button],
   input[type=submit] + input[type=submit] {
-    margin-top: 25px;
+    margin-top: 15px;
   }
 }
 
@@ -15398,14 +15407,14 @@ p + p > input[type=submit] {
 
 .button {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
   font-family: var(--font-family--default);
   font-size: var(--font-size--text);
   font-weight: var(--font-weight--default);
   line-height: calc( 22 / 19 );
   padding: 20px 40px;
   border: none;
-  text-align: center;
+  justify-content: center;
   text-decoration: none;
   cursor: pointer;
   white-space: normal;
@@ -15439,6 +15448,12 @@ p + p > input[type=submit] {
   transform: scale(1);
 }
 
+@media (max-width: 1023px) {
+  .button {
+    width: 100%;
+  }
+}
+
 @media (min-width: 1024px) {
   .button + .button {
     margin-left: 25px;
@@ -15447,7 +15462,7 @@ p + p > input[type=submit] {
 
 @media (max-width: 1023px) {
   .button + .button {
-    margin-top: 25px;
+    margin-top: 15px;
   }
 }
 
@@ -15499,6 +15514,7 @@ h4,
 h5,
 h6 {
   color: var(--color-title--default);
+  word-break: break-word;
 }
 
 h1 {
@@ -15633,6 +15649,13 @@ p {
   font-size: 16px;
 }
 
+/* Styling for bold text */
+
+b,
+strong {
+  font-weight: var(--font-weight--bold);
+}
+
 /* Styling for the links */
 
 a:not(.button) {
@@ -15681,7 +15704,20 @@ main {
 
 section {
   --section--background-color: var( --color-background--default );
-  padding: 75px 50px 45px;
+  padding: 75px 50px 40px;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  section {
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  section {
+    padding: 50px 0 15px;
+  }
 }
 
 section[data-section-background] {
@@ -15943,6 +15979,13 @@ section[data-section-background=color-accent--fifth] {
   padding: 0 25px;
   grid-column: span 12;
   grid-row: span 1;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .grid-child {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
 }
 
 .grid-child--1 {
@@ -16985,6 +17028,251 @@ hold-line {
 
 .object-margin-left--150 {
   margin-left: 150px;
+}
+
+.object-background-color {
+  width: calc( 100% - 50px );
+  margin-right: 25px;
+  margin-left: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  color: var(--color-text--default);
+  background-color: var(--object--background-color);
+  --form-border--error: #CE0018;
+  --form-border--size: 1px;
+  --form-border--radius: 0;
+  --form-label--color-default: var(--color-text--default);
+  --form-label--color-success: var(--color-text--default);
+  --form-label--color-error: var(--color-text--default);
+  --form-label--font-size: 1.7rem;
+  --form-label--font-weight: var(--font-weight--default);
+  --form-label--margin-bottom: 10px;
+  --form-outline--color-default: rgba(30, 33, 43, 0.15);
+  --form-outline--size: 2px;
+  --form-background--default: transparent;
+}
+
+.object-background-color--first-accent {
+  --object--background-color: var( --color-background--first-accent );
+  --color-accent--first: #1E212B;
+  --color-accent--second: #4D8B31;
+  --color-accent--third: #FFC800;
+  --color-accent--fourth: #FF8427;
+  --color-accent--fifth: #FFFFFF;
+  --color-text--default: #FFFFFF;
+  --color-text--first: #F3F2F1;
+  --color-text--second: #F6F6F6;
+  --color-text--third: #E4E5E5;
+  --color-text--white: #FFFFFF;
+  --color-text--black: #000000;
+  --color-title--default: #FF8427;
+  --color-title--first: #FF8427;
+  --color-title--second: #FFC800;
+  --color-title--third: #FFFFFF;
+  --color-link--default: #FFC800;
+  --color-link--visited: #FFC800;
+  --color-link--hover: #4D8B31;
+  --color-link--focus: #4D8B31;
+  --color-link--active: #4D8B31;
+  --color-border--first: #333333;
+  --color-border--second: #E4E5E5;
+  --color-border--third: #D3D3D3;
+  --color-border--white: #FFFFFF;
+  --color-border--black: #000000;
+  --color-background--default: #111111;
+  --color-background--light: #F6F6F6;
+  --color-background--dark: #111111;
+  --color-background--first-accent: #1E212B;
+  --color-background--second-accent: #4D8B31;
+  --color-background--third-accent: #FFC800;
+  --color-background--fourth-accent: #FF8427;
+  --color-background--fifth-accent: #FFFFFF;
+  --form-border--color-default: var(--color-border--first);
+  --form-border--color-hover: var(--color-accent--third);
+  --form-border--color-active: var(--color-accent--third);
+  --form-border--color-focus: var(--color-accent--third);
+  --form-border--color-success: #8CF258;
+}
+
+.object-background-color--second-accent {
+  --object--background-color: var( --color-background--second-accent );
+  --color-accent--first: #1E212B;
+  --color-accent--second: #4D8B31;
+  --color-accent--third: #FFC800;
+  --color-accent--fourth: #FF8427;
+  --color-accent--fifth: #FFFFFF;
+  --color-text--default: #333333;
+  --color-text--first: #111111;
+  --color-text--second: #242323;
+  --color-text--third: #333333;
+  --color-text--white: #FFFFFF;
+  --color-text--black: #000000;
+  --color-title--default: #1E212B;
+  --color-title--first: #1E212B;
+  --color-title--second: #4D8B31;
+  --color-title--third: #FFC800;
+  --color-link--default: #1E212B;
+  --color-link--visited: #1E212B;
+  --color-link--hover: #4D8B31;
+  --color-link--focus: #4D8B31;
+  --color-link--active: #4D8B31;
+  --color-border--first: #E4E5E5;
+  --color-border--second: #333333;
+  --color-border--third: #D3D3D3;
+  --color-border--white: #FFFFFF;
+  --color-border--black: #000000;
+  --color-background--default: #FFFFFF;
+  --color-background--light: #F6F6F6;
+  --color-background--dark: #111111;
+  --color-background--first-accent: #1E212B;
+  --color-background--second-accent: #4D8B31;
+  --color-background--third-accent: #FFC800;
+  --color-background--fourth-accent: #FF8427;
+  --color-background--fifth-accent: #FFFFFF;
+  --color-accent--second: #FFFFFF;
+  --color-text--default: #FFFFFF;
+  --color-title--second: #FFFFFF;
+  --color-link--hover: #FFFFFF;
+  --color-link--focus: #FFFFFF;
+  --color-link--active: #FFFFFF;
+  --form-border--color-default: var(--color-border--first);
+  --form-border--color-hover: var(--color-accent--first);
+  --form-border--color-active: var(--color-accent--first);
+  --form-border--color-focus: var(--color-accent--first);
+  --form-border--color-success: #8CF258;
+  --form-border--color-default: #2e521d;
+}
+
+.object-background-color--third-accent {
+  --object--background-color: var( --color-background--third-accent );
+  --color-accent--first: #1E212B;
+  --color-accent--second: #4D8B31;
+  --color-accent--third: #FFC800;
+  --color-accent--fourth: #FF8427;
+  --color-accent--fifth: #FFFFFF;
+  --color-text--default: #333333;
+  --color-text--first: #111111;
+  --color-text--second: #242323;
+  --color-text--third: #333333;
+  --color-text--white: #FFFFFF;
+  --color-text--black: #000000;
+  --color-title--default: #1E212B;
+  --color-title--first: #1E212B;
+  --color-title--second: #4D8B31;
+  --color-title--third: #FFC800;
+  --color-link--default: #1E212B;
+  --color-link--visited: #1E212B;
+  --color-link--hover: #4D8B31;
+  --color-link--focus: #4D8B31;
+  --color-link--active: #4D8B31;
+  --color-border--first: #E4E5E5;
+  --color-border--second: #333333;
+  --color-border--third: #D3D3D3;
+  --color-border--white: #FFFFFF;
+  --color-border--black: #000000;
+  --color-background--default: #FFFFFF;
+  --color-background--light: #F6F6F6;
+  --color-background--dark: #111111;
+  --color-background--first-accent: #1E212B;
+  --color-background--second-accent: #4D8B31;
+  --color-background--third-accent: #FFC800;
+  --color-background--fourth-accent: #FF8427;
+  --color-background--fifth-accent: #FFFFFF;
+  --color-link--default: #FF8427;
+  --color-link--visited: #FF8427;
+  --color-link--focus: #FF8427;
+  --color-link--active: #FF8427;
+  --form-border--color-default: var(--color-border--first);
+  --form-border--color-hover: var(--color-accent--first);
+  --form-border--color-active: var(--color-accent--first);
+  --form-border--color-focus: var(--color-accent--first);
+  --form-border--color-success: #8CF258;
+  --form-border--color-default: #d9aa00;
+}
+
+.object-background-color--fourth-accent {
+  --object--background-color: var( --color-background--fourth-accent );
+  --color-accent--first: #1E212B;
+  --color-accent--second: #4D8B31;
+  --color-accent--third: #FFC800;
+  --color-accent--fourth: #FF8427;
+  --color-accent--fifth: #FFFFFF;
+  --color-text--default: #333333;
+  --color-text--first: #111111;
+  --color-text--second: #242323;
+  --color-text--third: #333333;
+  --color-text--white: #FFFFFF;
+  --color-text--black: #000000;
+  --color-title--default: #1E212B;
+  --color-title--first: #1E212B;
+  --color-title--second: #4D8B31;
+  --color-title--third: #FFC800;
+  --color-link--default: #1E212B;
+  --color-link--visited: #1E212B;
+  --color-link--hover: #4D8B31;
+  --color-link--focus: #4D8B31;
+  --color-link--active: #4D8B31;
+  --color-border--first: #E4E5E5;
+  --color-border--second: #333333;
+  --color-border--third: #D3D3D3;
+  --color-border--white: #FFFFFF;
+  --color-border--black: #000000;
+  --color-background--default: #FFFFFF;
+  --color-background--light: #F6F6F6;
+  --color-background--dark: #111111;
+  --color-background--first-accent: #1E212B;
+  --color-background--second-accent: #4D8B31;
+  --color-background--third-accent: #FFC800;
+  --color-background--fourth-accent: #FF8427;
+  --color-background--fifth-accent: #FFFFFF;
+  --form-border--color-default: var(--color-border--first);
+  --form-border--color-hover: var(--color-accent--first);
+  --form-border--color-active: var(--color-accent--first);
+  --form-border--color-focus: var(--color-accent--first);
+  --form-border--color-success: #8CF258;
+  --form-border--color-default: #e66300;
+}
+
+.object-background-color--fifth-accent {
+  --object--background-color: var( --color-background--fifth-accent );
+  --color-accent--first: #1E212B;
+  --color-accent--second: #4D8B31;
+  --color-accent--third: #FFC800;
+  --color-accent--fourth: #FF8427;
+  --color-accent--fifth: #FFFFFF;
+  --color-text--default: #333333;
+  --color-text--first: #111111;
+  --color-text--second: #242323;
+  --color-text--third: #333333;
+  --color-text--white: #FFFFFF;
+  --color-text--black: #000000;
+  --color-title--default: #1E212B;
+  --color-title--first: #1E212B;
+  --color-title--second: #4D8B31;
+  --color-title--third: #FFC800;
+  --color-link--default: #1E212B;
+  --color-link--visited: #1E212B;
+  --color-link--hover: #4D8B31;
+  --color-link--focus: #4D8B31;
+  --color-link--active: #4D8B31;
+  --color-border--first: #E4E5E5;
+  --color-border--second: #333333;
+  --color-border--third: #D3D3D3;
+  --color-border--white: #FFFFFF;
+  --color-border--black: #000000;
+  --color-background--default: #FFFFFF;
+  --color-background--light: #F6F6F6;
+  --color-background--dark: #111111;
+  --color-background--first-accent: #1E212B;
+  --color-background--second-accent: #4D8B31;
+  --color-background--third-accent: #FFC800;
+  --color-background--fourth-accent: #FF8427;
+  --color-background--fifth-accent: #FFFFFF;
+  --form-border--color-default: var(--color-border--first);
+  --form-border--color-hover: var(--color-accent--first);
+  --form-border--color-active: var(--color-accent--first);
+  --form-border--color-focus: var(--color-accent--first);
+  --form-border--color-success: #8CF258;
 }
 
 .textblock-standard {

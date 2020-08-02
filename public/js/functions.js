@@ -1,8 +1,19 @@
-/** The standard functions **/
+/** Standard JavaScript functions **/
 
-/* Function to check if the url contains a string. */
-function url_contains( url_string ) {
-    return window.location.href.indexOf( url_string ) > -1;
+/**
+ * Function to check if the url contains a string.
+ * @param {String} f_URLString - The value the URL has to contains.
+ */
+function boolURLContains( f_URLString ) {
+    return window.location.href.indexOf( f_URLString ) > -1;
+}
+
+/**
+ * Function to check if the url is the given string.
+ * @param {String} f_URLString - The value the URL has to be.
+ */
+function boolURLIs( f_URLString ) {
+    return window.location.pathname === f_URLString;
 }
 
 /* Function to change a CSS variable */
@@ -10,7 +21,7 @@ function changeVar( var_name, new_value ) {
     document.documentElement.style.setProperty( '--' + var_name, new_value );
 }
 
-/** The custom functions **/
+/** Custom JavaScript functions **/
 
 function createStandardCSSVariables() {
     changeVar( 'js--screen-width', window.innerWidth + 'px' );
@@ -28,10 +39,15 @@ function toggleTheme() {
     return true;
 }
 
-/** The place to execute the functions **/
+/** Executing the functions **/
 
 /* Code to be executed when the site is loaded. */
 function executeOnLoad() {
+    createStandardCSSVariables();
+}
+function executeOnScroll() {
+}
+function executeOnResize() {
     createStandardCSSVariables();
 }
 
@@ -39,6 +55,12 @@ function executeOnLoad() {
 
 window.addEventListener( 'DOMContentLoaded', function() {
     executeOnLoad();
+} );
+window.addEventListener( 'scroll', event => {
+    executeOnScroll();
+} );
+window.addEventListener( 'resize', event => {
+    executeOnResize();
 } );
 
 document.getElementById("theme-button").addEventListener( "click", function() {
@@ -56,6 +78,18 @@ class HoldLine extends HTMLElement {
 }
 
 customElements.define( 'hold-line', HoldLine );
+
+/** -----   -----   -----
+ * JavaScript for the ServiceWorkers.
+ * -----   -----   ----- **/
+
+if( 'serviceWorker' in navigator ) {
+    navigator.serviceWorker.register( '/serviceworker.js' ).then(
+        serviceWorker => console.log( 'The service worker is successfully registered.', serviceWorker )
+    ).catch(
+        error => console.log( 'The service worker is not registered.', error )
+    );
+}
 
 /** -----   -----   -----
  * JavaScript for the forms.
