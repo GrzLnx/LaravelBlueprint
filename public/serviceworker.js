@@ -5,15 +5,23 @@ const staticCachePages = [
     '/',
     '/login'
 ];
-const staticCacheIncludesName = 'static-includes-02';
+const staticCacheIncludesName = 'static-includes-01';
 const staticCacheIncludes = [
     '/css/stylesheet.css',
     '/css/linearicons.css',
+    '/_debugbar/assets/stylesheets',
     '/js/functions.js',
+    '/_debugbar/assets/javascript',
+    '/site.webmanifest',
     '/manifest.webmanifest'
 ];
 const staticCacheImagesName = 'static-images-01';
 const staticCacheImages = [
+    '/images/icons/laravel-blueprint-pwa-icon-192.png',
+    '/favicon-32x32.png',
+    '/favicon-16x16.png',
+    '/android-chrome-192x192.png',
+    '/apple-touch-icon.png'
 ];
 const staticCacheFontsName = 'static-fonts-01';
 const staticCacheFonts = [
@@ -48,8 +56,9 @@ self.addEventListener( 'activate', evt => {
 if( useCachedFiles ) {
     self.addEventListener( 'fetch', evt => {
 
+        let url = evt.request.url.split( '?' )[0];
         evt.respondWith(
-            caches.match( evt.request ).then( cacheResponse => {
+            caches.match( url ).then( cacheResponse => {
                 return cacheResponse || fetch( evt.request );
             } )
         );

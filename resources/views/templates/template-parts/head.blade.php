@@ -16,6 +16,14 @@
     <title>@yield( 'page-title' ) - adje.online</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1e212b">
+    <meta name="msapplication-TileColor" content="#1e212b">
+    <meta name="theme-color" content="#1e212b">
     <!-- Includes -->
     <link href="/css/stylesheet.css" rel="stylesheet" type="text/css" media="all" />
     <link href="https://use.typekit.net/ski7rfi.css" rel="stylesheet" type="text/css" media="all">
