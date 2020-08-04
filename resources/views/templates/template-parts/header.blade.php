@@ -1,18 +1,14 @@
 <header>
-<nav class="default-nav">
-    <ul>
-        <li><a href="/">Homepage</a></li>
-        <li><a href="/news">News</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/users">Users</a></li>
-        @auth
-            <li><a href="/my-account">My account</a></li>
-            <li><a href="{{ route( 'logout' ) }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Uitloggen</a></li>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
-        @else
-            <li><a href="/login">Sign In</a></li>
-            <li><a href="/register">Sign Up</a></li>
-        @endauth
-    </ul>
-</nav>
+    <section class="grid-parent section--y-center" id="section--header">
+        <div class="textblock-standard object-margin-bottom--0 grid-child grid-child--1">
+            <h2>MIST RY</h2>
+        </div>
+        <nav class="nav-standard object-margin-bottom--0 grid-child grid-child--11">
+            <ul>
+                <li><a href="#articles">Articles</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </section>
 </header>

@@ -13,16 +13,13 @@ $layout: (
 
 /* Variables for the colors */
 $color-accent: (
-    first:                              #1E212B,
-    second:                             #4D8B31,
+    first:                              #F3E9DC,
+    second:                             #247BA0,
     third:                              #FFC800,
     fourth:                             #FF8427,
     fifth:                              #FFFFFF,
-    black:                              #1E212B,
-    green:                              #4D8B31,
-    yellow:                             #FFC800,
-    orange:                             #FF8427,
-    white:                              #FFFFFF,
+    retro:                              #F3E9DC,
+    blue:                               #247BA0
 );
 
 $color-white: (
@@ -49,7 +46,7 @@ $color-grey: (
 );
 
 $color-title: (
-    default:                            map-get( $color-accent, first ),
+    default:                            #011627,
     first:                              map-get( $color-accent, first ),
     second:                             map-get( $color-accent, second ),
     third:                              map-get( $color-accent, third )
@@ -62,7 +59,7 @@ $color-dark-title: (
 );
 
 $color-text: (
-    default:                            map-get( $color-black, third-shade ),
+    default:                            #011627,
     first:                              map-get( $color-black, first-shade ),
     second:                             map-get( $color-black, second-shade ),
     third:                              map-get( $color-black, third-shade ),
@@ -79,8 +76,8 @@ $color-dark-text: (
 );
 
 $color-link: (
-    default:                            map-get( $color-accent, first ),
-    visited:                            map-get( $color-accent, first ),
+    default:                            #011627,
+    visited:                            #011627,
     hover:                              map-get( $color-accent, second ),
     active:                             map-get( $color-accent, second ),
     focus:                              map-get( $color-accent, second )
@@ -379,21 +376,7 @@ html[data-layout] {
     @include light-colors();
 }
 
-@media (prefers-color-scheme: light) {
-    html[data-theme] {
-        @include light-colors();
-    }
-}
-@media (prefers-color-scheme: dark) {
-    html[data-theme] {
-        @include dark-colors();
-    }
-}
-
-html[data-theme="dark"] {
-    @include dark-colors();
-}
-html[data-theme="light"] {
+html[data-theme] {
     @include light-colors();
 }
 
@@ -485,26 +468,9 @@ html[data-spaces] {
     @include light-form-colors();
 }
 
-@media (prefers-color-scheme: light) {
-    html[data-theme] {
-        @include light-form-colors();
-        @include light-form-status-colors();
-    }
-}
-@media (prefers-color-scheme: dark) {
-    html[data-theme] {
-        @include dark-form-colors();
-        @include dark-form-status-colors();
-    }
-}
-
-html[data-form][data-theme="light"] {
+html[data-form][data-theme] {
     @include light-form-colors();
     @include light-form-status-colors();
-}
-html[data-form][data-theme="dark"] {
-    @include dark-form-colors();
-    @include dark-form-status-colors();
 }
 html[data-form] {
     @include form-colors();
@@ -541,15 +507,3 @@ html[data-font] {
     --font-weight--regular:             #{ map-get( $font-weight, regular ) };
     --font-weight--bold:                #{ map-get( $font-weight, bold ) };
 }
-
-/*
-TODO:: forms = done
-TODO:: form class maken = done
-TODO:: objects etc = done
-TODO:: website layout -> grid etc = done
-TODO:: buttons= done
-TODO:: background colors = done
-TODO:: standaard paginas netjes instellen = done!
-TODO:: tekstblok maken / instellen / stylen = done
-TODO:: responsive meenemen in alles! = done
-*/

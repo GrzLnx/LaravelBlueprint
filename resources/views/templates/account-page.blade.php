@@ -1,6 +1,5 @@
 @include( 'templates/template-parts/head' )
 <body class="account-page">
-@include( 'templates/template-parts/aside' )
+@include( 'templates/template-parts/header' )
 @yield( 'content' )
-</body>
-</html>
+@include( 'templates/template-parts/footer' )

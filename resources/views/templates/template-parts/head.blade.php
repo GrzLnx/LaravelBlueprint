@@ -13,7 +13,7 @@
     <link rel="preload" href="https://use.typekit.net/ski7rfi.css" as="style">
     <link rel="preload" href="/js/functions.js" as="script">
     <!-- Page information and SEO -->
-    <title>@yield( 'page-title' ) - adje.online</title>
+    <title>@yield( 'page-title' ) ~ MIST RY</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <!-- Favicon -->
