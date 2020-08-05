@@ -3,18 +3,25 @@ html {
 }
 
 body {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: var( --js--screen-height );
 }
 
-header {
-}
 aside {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 400px;
 }
 main {
+    margin-left: 400px;
+    flex-grow: 1;
 }
 
 section {
     --section--background-color: var( --color-background--default );
-    padding: 100px 50px 60px;
+    padding: 75px 50px 40px;
     @include screen-size( "tablet", "max" ) {
         padding-right: 25px;
         padding-left: 25px;
@@ -31,6 +38,8 @@ section[data-section-background] {
 }
 section[data-section-background="color-accent--first"] {
     --section--background-color: var( --color-background--first-accent );
+    @include first-accent-colors();
+    @include first-accent-form-colors();
 }
 section[data-section-background="color-accent--second"] {
     --section--background-color: var( --color-background--second-accent );
@@ -53,6 +62,10 @@ section[data-section-background="color-accent--fifth"] {
     @include fifth-accent-form-colors();
 }
 
+.section--full-height {
+    height: 100%;
+}
+
 .grid-parent {
     display: grid;
     grid-template-columns: repeat( 12, 1fr );
@@ -64,7 +77,7 @@ section[data-section-background="color-accent--fifth"] {
 .grid-child {
     display: inline-grid;
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
     padding: 0 25px;
     grid-column: span 12;
     grid-row: span 1;
@@ -127,17 +140,6 @@ section[data-section-background="color-accent--fifth"] {
     }
 }
 
-.section--full-height {
-    height: 100%;
-}
-.section--x-center {
-    justify-content: center;
-}
-.section--y-center {
-    align-items: center;
-}
-
-#section--header {
-    padding-top: 20px;
-    padding-bottom: 20px;
+#section--sidebar {
+    align-content: unset;
 }

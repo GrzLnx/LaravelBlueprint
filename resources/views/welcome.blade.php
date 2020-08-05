@@ -4,15 +4,12 @@
 
 @section( 'content' )
     <main>
-        <section class="grid-parent" id="section--articles" data-section-background="color-accent--first">
-        </section>
-        <section class="grid-parent" id="section--welcome">
+        <section class="section--full-height grid-parent" id="section--welcome" data-section-background="color-accent--third">
 
-            <div class="projects-standard grid-child grid-child--d-7">
-                <h5>New projects</h5>
-            </div>
-            <div class="projects-standard grid-child grid-child--d-5">
-                <h5>Completed projects</h5>
+            <div class="textblock-standard object-max-width--700 grid-child">
+                <h1>Oeps, je bent niet ingelogd!</h1>
+                <p>Om deze applicatie te kunnen gebruiken heb je een account nodig! Heb je nog geen account? Deze kan je heel makkelijk aanmaken.</p>
+                <p><a href="/login" class="button button--first-accent">Inloggen</a><a href="/register" class="button button--second-accent">Maak een account aan</a></p>
             </div>
 
         </section>
